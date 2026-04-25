@@ -45,6 +45,7 @@ This is a small WordPress recipe PDF library for an Upwork client job titled "Re
 - Commit 20 in progress: switch branding to `rl_logo_shelf.png` and restore navbar title text.
 - Commit 21 in progress: remove home subheadings and apply final sizing pass.
 - Commit 22 in progress: add public recipe browsing for signed-out users and visibility badges.
+- Commit 23 in progress: ignore local All-in-One migration backup artifacts.
 - Site structure now:
   - Home (`/`): searchable recipe library with Gallery/List toggle (signed-in: own recipes, signed-out: public recipes only)
   - Manage Recipes (`/manage-recipes/`): add/edit/delete UI
@@ -115,3 +116,4 @@ Manual WordPress QA in LocalWP browser:
 - Pending commit: `style: apply shelf logo branding and navbar title text`
 - Pending commit: `style: finalize home hero removal and responsive sizing`
 - Pending commit: `feat: add public recipe browsing and visibility badges`
+- Pending commit: `chore: ignore local migration backup artifacts`
