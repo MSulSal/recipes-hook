@@ -1,9 +1,14 @@
 # Upwork Proposal Notes
 
-- I already built a working demo of a simple recipe PDF library.
-- You can upload recipes as PDFs from WordPress, without retyping the recipe.
-- Recipes are searchable and viewable on the public site.
-- Visitors can open the PDF in-browser or download it.
-- I can migrate the finished site to your preferred hosting.
-- I can hand over WordPress access, documentation, and ownership cleanly.
+Hi, I already built a working WordPress demo for this exact recipe PDF workflow.
 
+The demo lets you add recipes from WordPress admin by uploading a PDF, so you do not have to retype ingredients or instructions. Visitors can browse the recipe library, search recipes, open the PDF in the browser, or download it.
+
+I kept it simple and ownership-friendly: it uses a small custom WordPress plugin, no Elementor, no paid plugin dependency, and no complicated recipe database fields. I can migrate it to your preferred hosting, set up the Recipes page/navigation, and hand over WordPress admin access plus clear instructions so you can manage everything yourself afterward.
+
+Notes to mention if useful:
+
+- Upload PDFs from **Recipes > Add New** in WordPress.
+- Search works by title, filename, category, tag, and best-effort PDF text for machine-readable PDFs.
+- Scanned PDFs still work, but should have clear titles/categories/tags.
+- The plugin can be uploaded separately if the host has a small import limit.

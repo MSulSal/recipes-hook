@@ -10,6 +10,8 @@ Go to your WordPress login URL, usually:
 
 Use the admin username and password provided during handoff.
 
+All routine recipe work happens in WordPress admin. You do not need GitHub, FTP, LocalWP, or code access to manage recipes.
+
 ## Add a Recipe PDF
 
 After the plugin is active, go to **Recipes > Add New** in WordPress. Enter a recipe title and use the **Recipe PDF** box to upload or select a PDF from the WordPress Media Library. The site will display this PDF as the recipe.
@@ -42,10 +44,14 @@ If a PDF is a scanned image, WordPress may not be able to search the text inside
 
 ## Replace or Delete a PDF
 
-Edit the recipe in WordPress and choose a different PDF. To remove a recipe entirely, move the recipe to Trash.
+Edit the recipe in WordPress and choose a different PDF in the **Recipe PDF** box. To remove the PDF but keep the recipe draft, click **Remove PDF** and update the recipe. To remove a recipe entirely, move the recipe to Trash.
 
 If a recipe detail page says the PDF is unavailable, edit the recipe in WordPress and select the PDF again from the **Recipe PDF** box.
 
 ## Add the Recipe Page to Navigation
 
 Go to **Appearance > Editor** or **Appearance > Menus**, depending on the theme, and add the page titled "Recipes" to the site navigation.
+
+## Plugin Updates or Moving Hosts
+
+If the site is moved to another host, the `Recipe PDF Library` plugin can be uploaded separately as a zip through **Plugins > Add New > Upload Plugin**. Recipe PDFs are media library files, so make sure the migration includes uploads or re-upload the PDFs from WordPress admin.

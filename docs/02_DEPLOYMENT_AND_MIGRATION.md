@@ -4,6 +4,13 @@
 
 Use a WordPress migration plugin or the host's migration tool to move the full site, including the database and media library, from LocalWP to production hosting.
 
+If the host has a 60 MB import limit, keep the migration small:
+
+- Migrate the database and essential site settings with the host's accepted tool.
+- Upload the custom plugin separately as a zip.
+- Move media uploads separately if the migration package is too large.
+- Reconnect any missing recipe PDFs from **Recipes > Edit Recipe** in WordPress admin.
+
 ## Plugin Zip/Export Option
 
 The custom plugin can also be zipped from:
@@ -25,6 +32,8 @@ The client should own the domain, hosting account, WordPress admin account, and 
 ## Files Not Committed
 
 Do not commit WordPress core, `wp-config.php`, `.htaccess`, database dumps, uploads, cache folders, LocalWP machine files, secrets, third-party themes, or third-party plugins.
+
+This repo is for the custom plugin and documentation. The production site itself should be backed up with normal WordPress hosting backups.
 
 ## Client Ownership Checklist
 

@@ -37,3 +37,7 @@ The custom behavior is isolated in a plugin so it can be uploaded separately if 
 ## Styling
 
 Frontend CSS is scoped under `rpl-` classes and loaded by the plugin only where the shortcode/detail view needs it. No theme files or external CDNs are required.
+
+## Migration Strategy
+
+The plugin is intentionally self-contained and small. If a host refuses imports over 60 MB, upload the plugin zip separately and migrate database/media in smaller steps. The client still manages all recipe content through WordPress admin after migration.

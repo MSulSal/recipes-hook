@@ -29,7 +29,8 @@ This is a small WordPress recipe PDF library for an Upwork client job titled "Re
 - Commit 4 complete: `[recipe_pdf_library]` shortcode added with search, category filter, cards, empty state, no-results state, and scoped CSS.
 - Commit 5 complete: single recipe pages display PDF actions, browser PDF iframe, categories/tags, graceful missing-PDF message, and back link.
 - Commit 6 complete: fallback-safe PDF text indexing added with no Composer dependency. It stores extracted text in hidden post meta and keeps title/filename/category/tag search as the reliable baseline.
-- Commit 7 in progress: shortcode and detail page CSS polished for a cleaner responsive demo.
+- Commit 7 complete: shortcode and detail page CSS polished for a cleaner responsive demo.
+- Commit 8 complete: final documentation and proposal notes.
 - The client workflow remains inside WordPress admin.
 
 ## Commands Run
@@ -38,6 +39,9 @@ This is a small WordPress recipe PDF library for an Upwork client job titled "Re
 - `gh auth status`
 - `gh repo view MSulSal/recipes-hook --json url,nameWithOwner`
 - `git remote add origin https://github.com/MSulSal/recipes-hook.git`
+- PHP lint via LocalWP PHP executable for plugin PHP files
+- `git diff --check`
+- `git push`
 
 ## Decisions Made
 
@@ -54,7 +58,7 @@ This is a small WordPress recipe PDF library for an Upwork client job titled "Re
 
 ## Next Recommended Step
 
-Finalize client handoff, migration, QA, README, and Upwork proposal notes.
+Manual WordPress QA: activate plugin, create the Recipes page with `[recipe_pdf_library]`, upload the sample PDF, publish a recipe, and test search/view/download/mobile.
 
 ## Latest Commit Summary
 
@@ -64,4 +68,5 @@ Finalize client handoff, migration, QA, README, and Upwork proposal notes.
 - `feat: add recipe library shortcode with search and filters`
 - `feat: add recipe detail PDF viewer`
 - `feat: index PDF text for recipe search`
-- Pending commit: `style: polish recipe library layout for client demo`
+- `style: polish recipe library layout for client demo`
+- `docs: finalize client handoff and proposal notes`

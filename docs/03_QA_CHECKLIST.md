@@ -26,3 +26,12 @@ Record results here as features are built.
 - Commit 5: Click **View Recipe**, confirm the PDF embeds, **Open PDF** opens the file, **Download PDF** downloads it, and a recipe with no PDF shows the unavailable message.
 - Commit 6: Upload a machine-readable PDF, publish the recipe, then search for a distinctive word from inside the PDF. Also confirm a scanned PDF still works by title/filename/category/tag if text is not indexed.
 - Commit 7: Check the recipe library and detail page around mobile width. Confirm the search form stacks, buttons fit, cards do not overflow, and the PDF viewer remains usable.
+- Commit 8: Documentation finalized. Code syntax checks passed with LocalWP PHP, but browser/wp-admin QA still needs to be performed in the running LocalWP site.
+
+## Final Manual Demo Flow
+
+1. Activate **Recipe PDF Library** in **Plugins**.
+2. Create a page titled **Recipes** and add `[recipe_pdf_library]`.
+3. Add the **Recipes** page to navigation.
+4. Go to **Recipes > Add New** and upload `Spicy_Pork_Scissor_Cut_Noodles_Full.pdf`.
+5. Publish the recipe and confirm the title/category/tag/search/detail/download workflows.
