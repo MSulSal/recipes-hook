@@ -24,7 +24,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<a href="<?php echo esc_url( (string) get_post_type_archive_link( 'recipe_pdf' ) ); ?>"><?php esc_html_e( 'Archive', 'recipes-hook-theme' ); ?></a>
 			<?php endif; ?>
 			<?php if ( is_user_logged_in() ) : ?>
-				<a href="<?php echo esc_url( admin_url( 'edit.php?post_type=recipe_pdf' ) ); ?>"><?php esc_html_e( 'Manage Recipes', 'recipes-hook-theme' ); ?></a>
+				<?php if ( current_user_can( 'edit_posts' ) ) : ?>
+					<a href="<?php echo esc_url( admin_url( 'edit.php?post_type=recipe_pdf' ) ); ?>"><?php esc_html_e( 'Manage Recipes', 'recipes-hook-theme' ); ?></a>
+				<?php endif; ?>
 				<a href="<?php echo esc_url( wp_logout_url( home_url( '/' ) ) ); ?>"><?php esc_html_e( 'Log Out', 'recipes-hook-theme' ); ?></a>
 			<?php else : ?>
 				<a href="<?php echo esc_url( home_url( '/login/' ) ); ?>"><?php esc_html_e( 'Log In', 'recipes-hook-theme' ); ?></a>

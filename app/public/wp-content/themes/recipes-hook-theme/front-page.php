@@ -4,7 +4,8 @@ get_header();
 $status        = isset( $_GET['rpl_status'] ) ? sanitize_key( wp_unslash( $_GET['rpl_status'] ) ) : '';
 $editing_id    = isset( $_GET['rpl_edit'] ) ? absint( $_GET['rpl_edit'] ) : 0;
 $editing_post  = $editing_id ? get_post( $editing_id ) : null;
-$can_manage    = is_user_logged_in() && current_user_can( 'edit_posts' );
+$is_logged_in  = is_user_logged_in();
+$can_manage    = $is_logged_in && current_user_can( 'edit_posts' );
 $is_edit_valid = $editing_post instanceof WP_Post && 'recipe_pdf' === $editing_post->post_type && current_user_can( 'edit_post', $editing_post->ID );
 
 if ( ! $is_edit_valid ) {
@@ -132,6 +133,15 @@ if ( ! $is_edit_valid ) {
 					<?php endforeach; ?>
 				</ul>
 			<?php endif; ?>
+		</div>
+	</section>
+<?php elseif ( $is_logged_in ) : ?>
+	<section class="rht-auth-shell">
+		<div class="rht-auth-cta">
+			<p class="rht-auth-eyebrow"><?php esc_html_e( 'Account Permission', 'recipes-hook-theme' ); ?></p>
+			<h2><?php esc_html_e( 'Your account is read-only for recipe management', 'recipes-hook-theme' ); ?></h2>
+			<p><?php esc_html_e( 'You are signed in, but this account cannot add, edit, or delete recipes. Ask an admin for Editor access.', 'recipes-hook-theme' ); ?></p>
+			<p><a class="rpl-secondary-link" href="<?php echo esc_url( admin_url( 'profile.php' ) ); ?>"><?php esc_html_e( 'View My Account', 'recipes-hook-theme' ); ?></a></p>
 		</div>
 	</section>
 <?php else : ?>
