@@ -11,13 +11,13 @@ if ( ! $is_edit_valid ) {
 	$editing_post = null;
 }
 ?>
-<section class="rht-hero rht-card">
+<section class="rht-hero">
 	<h1 class="rht-page-title"><?php esc_html_e( 'Recipe PDF Library', 'recipes-hook-theme' ); ?></h1>
 	<p class="rht-page-subtitle"><?php esc_html_e( 'Search, open, and manage recipe PDFs in one place.', 'recipes-hook-theme' ); ?></p>
 </section>
 
 <?php if ( '' !== $status && '' !== rht_front_status_message( $status ) ) : ?>
-	<div class="rht-alert rht-card"><?php echo esc_html( rht_front_status_message( $status ) ); ?></div>
+	<div class="rht-alert"><?php echo esc_html( rht_front_status_message( $status ) ); ?></div>
 <?php endif; ?>
 
 <?php if ( $can_manage ) : ?>
@@ -31,10 +31,11 @@ if ( ! $is_edit_valid ) {
 	$user_recipes = get_posts(
 		array(
 			'post_type'      => 'recipe_pdf',
-			'post_status'    => 'publish',
+			'post_status'    => array( 'private', 'publish' ),
 			'posts_per_page' => 12,
 			'orderby'        => 'date',
 			'order'          => 'DESC',
+			'author'         => get_current_user_id(),
 		)
 	);
 	$current_categories = array();
@@ -46,7 +47,7 @@ if ( ! $is_edit_valid ) {
 	}
 	?>
 	<section class="rht-manage-grid">
-		<div class="rht-card rht-manage-form">
+		<div class="rht-manage-form">
 			<h2><?php echo esc_html( $editing_post ? __( 'Edit Recipe', 'recipes-hook-theme' ) : __( 'Add Recipe', 'recipes-hook-theme' ) ); ?></h2>
 			<p><?php esc_html_e( 'Upload a PDF and publish directly from the site.', 'recipes-hook-theme' ); ?></p>
 			<form method="post" enctype="multipart/form-data" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
@@ -100,7 +101,7 @@ if ( ! $is_edit_valid ) {
 			</form>
 		</div>
 
-		<div class="rht-card rht-manage-list">
+		<div class="rht-manage-list">
 			<h2><?php esc_html_e( 'Manage Recipes', 'recipes-hook-theme' ); ?></h2>
 			<p><?php esc_html_e( 'Edit or delete recipes directly from the site.', 'recipes-hook-theme' ); ?></p>
 			<?php if ( empty( $user_recipes ) ) : ?>
@@ -134,37 +135,11 @@ if ( ! $is_edit_valid ) {
 	</section>
 <?php else : ?>
 	<section class="rht-auth-shell">
-		<div class="rht-card rht-auth-card">
-			<div class="rht-auth-intro">
-				<p class="rht-auth-eyebrow"><?php esc_html_e( 'Private Workspace', 'recipes-hook-theme' ); ?></p>
-				<h2><?php esc_html_e( 'Client Login', 'recipes-hook-theme' ); ?></h2>
-				<p><?php esc_html_e( 'Sign in to manage recipe PDFs without opening wp-admin.', 'recipes-hook-theme' ); ?></p>
-				<ul class="rht-auth-points">
-					<li><?php esc_html_e( 'Publish new recipe PDFs', 'recipes-hook-theme' ); ?></li>
-					<li><?php esc_html_e( 'Edit title, tags, categories', 'recipes-hook-theme' ); ?></li>
-					<li><?php esc_html_e( 'Delete outdated recipes', 'recipes-hook-theme' ); ?></li>
-				</ul>
-			</div>
-			<div class="rht-auth-form-wrap">
-				<form class="rht-auth-form" name="loginform" action="<?php echo esc_url( wp_login_url() ); ?>" method="post">
-					<label for="user_login"><?php esc_html_e( 'Username or Email', 'recipes-hook-theme' ); ?></label>
-					<input type="text" name="log" id="user_login" autocomplete="username" required>
-
-					<label for="user_pass"><?php esc_html_e( 'Password', 'recipes-hook-theme' ); ?></label>
-					<input type="password" name="pwd" id="user_pass" autocomplete="current-password" required>
-
-					<label class="rht-inline-check">
-						<input type="checkbox" name="rememberme" value="forever">
-						<span><?php esc_html_e( 'Keep me signed in', 'recipes-hook-theme' ); ?></span>
-					</label>
-
-					<input type="hidden" name="redirect_to" value="<?php echo esc_url( home_url( '/' ) ); ?>">
-					<button type="submit" class="rht-auth-submit"><?php esc_html_e( 'Log In', 'recipes-hook-theme' ); ?></button>
-				</form>
-				<div class="rht-auth-links">
-					<a href="<?php echo esc_url( wp_lostpassword_url( home_url( '/' ) ) ); ?>"><?php esc_html_e( 'Forgot password?', 'recipes-hook-theme' ); ?></a>
-				</div>
-			</div>
+		<div class="rht-auth-cta">
+			<p class="rht-auth-eyebrow"><?php esc_html_e( 'Client Workspace', 'recipes-hook-theme' ); ?></p>
+			<h2><?php esc_html_e( 'Sign in to manage your recipes', 'recipes-hook-theme' ); ?></h2>
+			<p><?php esc_html_e( 'Log in to add, edit, and organize recipe PDFs.', 'recipes-hook-theme' ); ?></p>
+			<p><a class="rpl-view-button" href="<?php echo esc_url( home_url( '/login/' ) ); ?>"><?php esc_html_e( 'Go to Login Page', 'recipes-hook-theme' ); ?></a></p>
 		</div>
 	</section>
 <?php endif; ?>

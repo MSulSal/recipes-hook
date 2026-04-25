@@ -42,3 +42,6 @@ Record results here as features are built.
 5. Delete a test recipe from the homepage management panel.
 6. Confirm title/category/tag/search/detail/download workflows.
 7. Confirm logged-out homepage shows the custom login panel and that login redirects back to homepage.
+8. Confirm login form appears only on `/login` and not on homepage.
+9. Confirm User A cannot view or edit User B recipes.
+10. Confirm `/login` has only the login form (no site navbar/header).

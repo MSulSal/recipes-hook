@@ -20,6 +20,35 @@ function rht_enqueue_styles(): void {
 }
 add_action( 'wp_enqueue_scripts', 'rht_enqueue_styles' );
 
+function rht_create_login_page_on_theme_switch(): void {
+	$login_page = get_page_by_path( 'login' );
+
+	if ( $login_page instanceof WP_Post ) {
+		return;
+	}
+
+	wp_insert_post(
+		array(
+			'post_type'    => 'page',
+			'post_status'  => 'publish',
+			'post_title'   => 'Login',
+			'post_name'    => 'login',
+			'post_content' => '',
+		)
+	);
+}
+add_action( 'after_switch_theme', 'rht_create_login_page_on_theme_switch' );
+
+function rht_ensure_login_page_exists(): void {
+	if ( get_option( 'rht_login_page_checked', false ) ) {
+		return;
+	}
+
+	rht_create_login_page_on_theme_switch();
+	update_option( 'rht_login_page_checked', 1, false );
+}
+add_action( 'init', 'rht_ensure_login_page_exists' );
+
 function rht_front_status_message( string $status ): string {
 	$map = array(
 		'created'      => __( 'Recipe created successfully.', 'recipes-hook-theme' ),

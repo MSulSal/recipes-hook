@@ -19,9 +19,17 @@ All routine recipe work happens in WordPress admin. You do not need GitHub, FTP,
 
 This setup keeps visuals in the theme and recipe behavior in the plugin.
 
+## Login Page
+
+Use the dedicated login page:
+
+`/login`
+
+The login page is a standalone form-only screen.
+
 ## Manage Recipes From the Site
 
-If logged in, the homepage includes a management panel where you can:
+After login, the homepage includes a management panel where you can:
 
 - Add a recipe with PDF upload
 - Edit title, tags, categories, and notes
@@ -30,7 +38,8 @@ If logged in, the homepage includes a management panel where you can:
 
 This is the primary workflow for everyday use. wp-admin remains available for advanced settings.
 
-Logged-out visitors now see a custom login panel on the homepage. Use that panel to sign in and access recipe management.
+Logged-out visitors see a homepage prompt that links to `/login`.
+Each user account has its own recipe collection. Users only see and manage their own recipes on the site.
 
 ## Add a Recipe PDF
 

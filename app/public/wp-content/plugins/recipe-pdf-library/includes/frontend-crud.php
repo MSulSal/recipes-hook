@@ -42,7 +42,7 @@ function rpl_handle_frontend_create_recipe(): void {
 	$post_id = wp_insert_post(
 		array(
 			'post_type'    => 'recipe_pdf',
-			'post_status'  => 'publish',
+			'post_status'  => 'private',
 			'post_title'   => $title,
 			'post_content' => $description,
 			'post_author'  => get_current_user_id(),
@@ -88,6 +88,12 @@ function rpl_handle_frontend_update_recipe(): void {
 	$post_id = isset( $_POST['rpl_recipe_id'] ) ? absint( $_POST['rpl_recipe_id'] ) : 0;
 
 	if ( ! $post_id || 'recipe_pdf' !== get_post_type( $post_id ) || ! current_user_can( 'edit_post', $post_id ) ) {
+		rpl_frontend_redirect_with_status( 'forbidden' );
+	}
+
+	$post = get_post( $post_id );
+
+	if ( ! $post instanceof WP_Post || (int) $post->post_author !== get_current_user_id() ) {
 		rpl_frontend_redirect_with_status( 'forbidden' );
 	}
 
@@ -150,6 +156,12 @@ function rpl_handle_frontend_delete_recipe(): void {
 	$post_id = isset( $_POST['rpl_recipe_id'] ) ? absint( $_POST['rpl_recipe_id'] ) : 0;
 
 	if ( ! $post_id || 'recipe_pdf' !== get_post_type( $post_id ) || ! current_user_can( 'delete_post', $post_id ) ) {
+		rpl_frontend_redirect_with_status( 'forbidden' );
+	}
+
+	$post = get_post( $post_id );
+
+	if ( ! $post instanceof WP_Post || (int) $post->post_author !== get_current_user_id() ) {
 		rpl_frontend_redirect_with_status( 'forbidden' );
 	}
 

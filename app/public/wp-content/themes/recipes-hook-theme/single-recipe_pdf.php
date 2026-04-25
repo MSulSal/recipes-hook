@@ -5,6 +5,19 @@ if ( have_posts() ) :
 	while ( have_posts() ) :
 		the_post();
 		$post_id = get_the_ID();
+		$author_id = (int) get_post_field( 'post_author', $post_id );
+
+		if ( ! is_user_logged_in() || get_current_user_id() !== $author_id ) {
+			?>
+			<div class="rpl-empty-state">
+				<h2><?php esc_html_e( 'Private recipe', 'recipes-hook-theme' ); ?></h2>
+				<p><?php esc_html_e( 'This recipe belongs to another account. Log in to view your own recipe collection.', 'recipes-hook-theme' ); ?></p>
+				<p><a class="rpl-view-button" href="<?php echo esc_url( home_url( '/login/' ) ); ?>"><?php esc_html_e( 'Go to Login', 'recipes-hook-theme' ); ?></a></p>
+			</div>
+			<?php
+			continue;
+		}
+
 		$pdf_url = function_exists( 'rpl_get_recipe_pdf_url' ) ? rpl_get_recipe_pdf_url( $post_id ) : '';
 		$pdf_name = function_exists( 'rpl_get_recipe_pdf_filename' ) ? rpl_get_recipe_pdf_filename( $post_id ) : '';
 		$categories = get_the_terms( $post_id, 'recipe_category' );
@@ -51,4 +64,3 @@ if ( have_posts() ) :
 endif;
 
 get_footer();
-

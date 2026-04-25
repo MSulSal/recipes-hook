@@ -15,6 +15,10 @@ function rpl_register_shortcodes(): void {
 add_action( 'init', 'rpl_register_shortcodes' );
 
 function rpl_render_recipe_library_shortcode(): string {
+	if ( ! is_user_logged_in() ) {
+		return rpl_render_library_login_required();
+	}
+
 	$search        = isset( $_GET['recipe_search'] ) ? sanitize_text_field( wp_unslash( $_GET['recipe_search'] ) ) : '';
 	$category_slug = isset( $_GET['recipe_category'] ) ? sanitize_title( wp_unslash( $_GET['recipe_category'] ) ) : '';
 	$recipes       = rpl_get_library_recipes( $category_slug );
@@ -101,15 +105,20 @@ function rpl_render_recipe_library_shortcode(): string {
 }
 
 function rpl_get_library_recipes( string $category_slug ): array {
+	if ( ! is_user_logged_in() ) {
+		return array();
+	}
+
 	$args = array(
 		'post_type'              => 'recipe_pdf',
-		'post_status'            => 'publish',
+		'post_status'            => array( 'private', 'publish' ),
 		'posts_per_page'         => 100,
 		'orderby'                => 'title',
 		'order'                  => 'ASC',
 		'no_found_rows'          => true,
 		'update_post_meta_cache' => true,
 		'update_post_term_cache' => true,
+		'author'                 => get_current_user_id(),
 	);
 
 	if ( $category_slug ) {
@@ -273,4 +282,18 @@ function rpl_render_active_filters( string $search, string $category_slug, $cate
 		<?php endif; ?>
 	</div>
 	<?php
+}
+
+function rpl_render_library_login_required(): string {
+	$login_url = home_url( '/login/' );
+
+	ob_start();
+	?>
+	<div class="rpl-empty-state">
+		<h2><?php esc_html_e( 'Log in to view recipes', 'recipe-pdf-library' ); ?></h2>
+		<p><?php esc_html_e( 'Sign in to access recipe management and search.', 'recipe-pdf-library' ); ?></p>
+		<p><a class="rpl-view-button" href="<?php echo esc_url( $login_url ); ?>"><?php esc_html_e( 'Go to Login', 'recipe-pdf-library' ); ?></a></p>
+	</div>
+	<?php
+	return (string) ob_get_clean();
 }

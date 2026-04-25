@@ -35,6 +35,9 @@ The plugin handles business logic:
 - PDF upload and validation
 - Search behavior and PDF text indexing
 - Frontend authenticated create/edit/delete actions
+- Per-user private recipe collections
+
+The login form is on `/login`. The homepage shows a login prompt when signed out.
 
 ## Handoff Notes
 

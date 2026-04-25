@@ -9,6 +9,10 @@ Recipe behavior belongs in a custom plugin so the client can change themes later
 The `recipes-hook-theme` theme owns presentation: front page layout, archive/single templates, and styling.
 The `recipe-pdf-library` plugin owns business behavior: data model, PDF attachment handling, indexing, search rules, and frontend CRUD action handlers.
 
+## User Collections
+
+The recipe library is account-scoped. Logged-in users query only their own recipes, recipe creation defaults to private status, and update/delete/single-view access is restricted to the post author.
+
 ## Custom Post Type for Recipe PDFs
 
 Each recipe will be represented as a `recipe_pdf` post. This keeps recipes manageable in WordPress admin while allowing titles, categories, tags, archive pages, and single recipe pages.
