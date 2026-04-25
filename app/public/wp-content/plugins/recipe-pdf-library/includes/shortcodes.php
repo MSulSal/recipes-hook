@@ -25,10 +25,6 @@ function rpl_render_recipe_library_shortcode( array $atts = array() ): string {
 
 	$show_header = 'no' !== strtolower( (string) $atts['show_header'] );
 
-	if ( ! is_user_logged_in() ) {
-		return rpl_render_library_login_required();
-	}
-
 	$search        = isset( $_GET['recipe_search'] ) ? sanitize_text_field( wp_unslash( $_GET['recipe_search'] ) ) : '';
 	$category_slug = isset( $_GET['recipe_category'] ) ? sanitize_title( wp_unslash( $_GET['recipe_category'] ) ) : '';
 	$view_mode     = isset( $_GET['recipe_view'] ) ? sanitize_key( wp_unslash( $_GET['recipe_view'] ) ) : 'gallery';
@@ -96,7 +92,6 @@ function rpl_render_recipe_library_shortcode( array $atts = array() ): string {
 					<p><?php esc_html_e( 'Try a different search term or choose another category.', 'recipe-pdf-library' ); ?></p>
 				<?php else : ?>
 					<h2><?php esc_html_e( 'No recipes yet', 'recipe-pdf-library' ); ?></h2>
-					<p><?php esc_html_e( 'Recipes will appear here after they are added in WordPress admin.', 'recipe-pdf-library' ); ?></p>
 				<?php endif; ?>
 			</div>
 		<?php else : ?>
@@ -124,21 +119,20 @@ function rpl_render_recipe_library_shortcode( array $atts = array() ): string {
 }
 
 function rpl_get_library_recipes( string $category_slug ): array {
-	if ( ! is_user_logged_in() ) {
-		return array();
-	}
-
 	$args = array(
 		'post_type'              => 'recipe_pdf',
-		'post_status'            => array( 'private' ),
+		'post_status'            => is_user_logged_in() ? array( 'private', 'publish' ) : array( 'publish' ),
 		'posts_per_page'         => 100,
 		'orderby'                => 'title',
 		'order'                  => 'ASC',
 		'no_found_rows'          => true,
 		'update_post_meta_cache' => true,
 		'update_post_term_cache' => true,
-		'author'                 => get_current_user_id(),
 	);
+
+	if ( is_user_logged_in() ) {
+		$args['author'] = get_current_user_id();
+	}
 
 	if ( $category_slug ) {
 		$args['tax_query'] = array(
@@ -191,6 +185,8 @@ function rpl_render_recipe_card( WP_Post $recipe, string $view_mode ): void {
 	$published    = get_the_date( get_option( 'date_format' ), $recipe );
 	$categories   = get_the_terms( $recipe->ID, 'recipe_category' );
 	$tags         = get_the_terms( $recipe->ID, 'recipe_tag' );
+	$is_public    = 'publish' === get_post_status( $recipe );
+	$visibility   = $is_public ? __( 'Public', 'recipe-pdf-library' ) : __( 'Private', 'recipe-pdf-library' );
 	?>
 	<article class="rpl-recipe-card rpl-recipe-card--<?php echo esc_attr( $view_mode ); ?>">
 		<a class="rpl-recipe-card__thumb" href="<?php echo esc_url( get_permalink( $recipe ) ); ?>" aria-label="<?php echo esc_attr( get_the_title( $recipe ) ); ?>">
@@ -205,6 +201,7 @@ function rpl_render_recipe_card( WP_Post $recipe, string $view_mode ): void {
 				<a href="<?php echo esc_url( get_permalink( $recipe ) ); ?>"><?php echo esc_html( get_the_title( $recipe ) ); ?></a>
 			</h2>
 			<div class="rpl-recipe-card__meta">
+				<span class="rpl-visibility-badge <?php echo $is_public ? 'rpl-visibility-badge--public' : 'rpl-visibility-badge--private'; ?>"><?php echo esc_html( $visibility ); ?></span>
 				<span><?php echo esc_html__( 'PDF Recipe', 'recipe-pdf-library' ); ?></span>
 				<?php if ( $published ) : ?>
 					<span><?php echo esc_html( $published ); ?></span>
@@ -343,18 +340,4 @@ function rpl_render_active_filters( string $search, string $category_slug, $cate
 		<?php endif; ?>
 	</div>
 	<?php
-}
-
-function rpl_render_library_login_required(): string {
-	$login_url = home_url( '/login/' );
-
-	ob_start();
-	?>
-	<div class="rpl-empty-state">
-		<h2><?php esc_html_e( 'Log in to view recipes', 'recipe-pdf-library' ); ?></h2>
-		<p><?php esc_html_e( 'Sign in to access recipe management and search.', 'recipe-pdf-library' ); ?></p>
-		<p><a class="rpl-view-button" href="<?php echo esc_url( $login_url ); ?>"><?php esc_html_e( 'Go to Login', 'recipe-pdf-library' ); ?></a></p>
-	</div>
-	<?php
-	return (string) ob_get_clean();
 }

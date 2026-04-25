@@ -28,13 +28,17 @@ function rpl_get_secure_pdf_download_url( int $post_id ): string {
 }
 
 function rpl_can_access_recipe_pdf_post( int $post_id ): bool {
-	if ( ! is_user_logged_in() ) {
-		return false;
-	}
-
 	$post = get_post( $post_id );
 
 	if ( ! $post instanceof WP_Post || 'recipe_pdf' !== $post->post_type ) {
+		return false;
+	}
+
+	if ( 'publish' === get_post_status( $post ) ) {
+		return true;
+	}
+
+	if ( ! is_user_logged_in() ) {
 		return false;
 	}
 

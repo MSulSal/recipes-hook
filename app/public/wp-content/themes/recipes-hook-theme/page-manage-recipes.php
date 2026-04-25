@@ -32,7 +32,7 @@ if ( ! $is_edit_valid ) {
 	$user_recipes = get_posts(
 		array(
 			'post_type'      => 'recipe_pdf',
-			'post_status'    => array( 'private' ),
+			'post_status'    => array( 'private', 'publish' ),
 			'posts_per_page' => 12,
 			'orderby'        => 'date',
 			'order'          => 'DESC',
@@ -41,10 +41,12 @@ if ( ! $is_edit_valid ) {
 	);
 	$current_categories = array();
 	$current_tags       = '';
+	$current_visibility = 'private';
 
 	if ( $editing_post ) {
 		$current_categories = wp_get_post_terms( $editing_post->ID, 'recipe_category', array( 'fields' => 'ids' ) );
 		$current_tags       = implode( ', ', wp_get_post_terms( $editing_post->ID, 'recipe_tag', array( 'fields' => 'names' ) ) );
+		$current_visibility = 'publish' === get_post_status( $editing_post ) ? 'publish' : 'private';
 	}
 	?>
 	<section class="rht-manage-grid" id="manage-recipes">
@@ -79,7 +81,13 @@ if ( ! $is_edit_valid ) {
 				<label for="rht-recipe-description"><?php esc_html_e( 'Notes (optional)', 'recipes-hook-theme' ); ?></label>
 				<textarea id="rht-recipe-description" name="rpl_recipe_description" rows="4" placeholder="<?php esc_attr_e( 'Optional short note for this recipe.', 'recipes-hook-theme' ); ?>"><?php echo esc_textarea( $editing_post ? (string) $editing_post->post_content : '' ); ?></textarea>
 
-				<button type="submit" class="rht-primary-submit"><?php echo esc_html( $editing_post ? __( 'Update Recipe', 'recipes-hook-theme' ) : __( 'Publish Recipe', 'recipes-hook-theme' ) ); ?></button>
+				<label for="rht-recipe-visibility"><?php esc_html_e( 'Visibility', 'recipes-hook-theme' ); ?></label>
+				<select id="rht-recipe-visibility" name="rpl_recipe_visibility">
+					<option value="private" <?php selected( 'private', $current_visibility ); ?>><?php esc_html_e( 'Private', 'recipes-hook-theme' ); ?></option>
+					<option value="publish" <?php selected( 'publish', $current_visibility ); ?>><?php esc_html_e( 'Public', 'recipes-hook-theme' ); ?></option>
+				</select>
+
+				<button type="submit" class="rht-primary-submit"><?php echo esc_html( $editing_post ? __( 'Update Recipe', 'recipes-hook-theme' ) : __( 'Save Recipe', 'recipes-hook-theme' ) ); ?></button>
 
 				<fieldset class="rht-category-set">
 					<legend><?php esc_html_e( 'Categories', 'recipes-hook-theme' ); ?></legend>
@@ -114,7 +122,10 @@ if ( ! $is_edit_valid ) {
 						<li>
 							<div>
 								<strong><?php echo esc_html( get_the_title( $recipe_item ) ); ?></strong>
-								<span><?php echo esc_html( get_the_date( get_option( 'date_format' ), $recipe_item ) ); ?></span>
+								<span>
+									<?php echo esc_html( get_the_date( get_option( 'date_format' ), $recipe_item ) ); ?>
+									<?php echo esc_html( ' | ' . ( 'publish' === get_post_status( $recipe_item ) ? __( 'Public', 'recipes-hook-theme' ) : __( 'Private', 'recipes-hook-theme' ) ) ); ?>
+								</span>
 							</div>
 							<div class="rht-manage-actions">
 								<a class="rpl-secondary-link" href="<?php echo esc_url( add_query_arg( 'rpl_edit', (string) $recipe_item->ID, home_url( '/manage-recipes/' ) ) ); ?>"><?php esc_html_e( 'Edit', 'recipes-hook-theme' ); ?></a>

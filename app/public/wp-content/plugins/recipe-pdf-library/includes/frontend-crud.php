@@ -28,6 +28,7 @@ function rpl_handle_frontend_create_recipe(): void {
 	$description = isset( $_POST['rpl_recipe_description'] ) ? wp_kses_post( wp_unslash( $_POST['rpl_recipe_description'] ) ) : '';
 	$tags_raw    = isset( $_POST['rpl_recipe_tags'] ) ? sanitize_text_field( wp_unslash( $_POST['rpl_recipe_tags'] ) ) : '';
 	$categories  = isset( $_POST['rpl_recipe_categories'] ) ? array_map( 'intval', (array) wp_unslash( $_POST['rpl_recipe_categories'] ) ) : array();
+	$post_status = rpl_frontend_get_visibility_status( isset( $_POST['rpl_recipe_visibility'] ) ? wp_unslash( $_POST['rpl_recipe_visibility'] ) : 'private' );
 
 	$attachment_id = rpl_frontend_upload_pdf_attachment( 'rpl_recipe_pdf' );
 
@@ -42,7 +43,7 @@ function rpl_handle_frontend_create_recipe(): void {
 	$post_id = wp_insert_post(
 		array(
 			'post_type'    => 'recipe_pdf',
-			'post_status'  => 'private',
+			'post_status'  => $post_status,
 			'post_title'   => $title,
 			'post_content' => $description,
 			'post_author'  => get_current_user_id(),
@@ -102,10 +103,12 @@ function rpl_handle_frontend_update_recipe(): void {
 	$tags_raw    = isset( $_POST['rpl_recipe_tags'] ) ? sanitize_text_field( wp_unslash( $_POST['rpl_recipe_tags'] ) ) : '';
 	$categories  = isset( $_POST['rpl_recipe_categories'] ) ? array_map( 'intval', (array) wp_unslash( $_POST['rpl_recipe_categories'] ) ) : array();
 	$remove_pdf  = ! empty( $_POST['rpl_remove_pdf'] );
+	$post_status = rpl_frontend_get_visibility_status( isset( $_POST['rpl_recipe_visibility'] ) ? wp_unslash( $_POST['rpl_recipe_visibility'] ) : (string) $post->post_status );
 
 	$updated = wp_update_post(
 		array(
 			'ID'           => $post_id,
+			'post_status'  => $post_status,
 			'post_title'   => $title,
 			'post_content' => $description,
 		),
@@ -244,4 +247,10 @@ function rpl_frontend_redirect_with_status( string $status ): void {
 		)
 	);
 	exit;
+}
+
+function rpl_frontend_get_visibility_status( $status ): string {
+	$status = sanitize_key( (string) $status );
+
+	return in_array( $status, array( 'publish', 'private' ), true ) ? $status : 'private';
 }

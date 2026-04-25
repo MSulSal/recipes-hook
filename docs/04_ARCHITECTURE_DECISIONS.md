@@ -11,7 +11,7 @@ The `recipe-pdf-library` plugin owns business behavior: data model, PDF attachme
 
 ## User Collections
 
-The recipe library is account-scoped. Logged-in users query only their own recipes, recipe creation defaults to private status, and update/delete/single-view access is restricted to the post author.
+The management experience is account-scoped. Logged-in users query and manage only their own recipes from home/manage views, but each recipe can be marked Public or Private. Signed-out users can browse only Public recipes.
 
 ## Custom Post Type for Recipe PDFs
 
@@ -21,7 +21,7 @@ Recipe detail URLs use the singular `/recipe/` slug. The post type archive route
 
 ## Search
 
-Search begins with reliable WordPress data: title, PDF filename, categories, and tags. The shortcode loads private recipe posts for the logged-in account and applies a simple PHP-side match, which is appropriate for this small client site and avoids fragile custom SQL. Optional PDF text extraction may be added only if it stays portable and fallback-safe.
+Search begins with reliable WordPress data: title, PDF filename, categories, and tags. The shortcode loads recipe posts based on session context (signed-in: own private/public; signed-out: public only) and applies a simple PHP-side match, which is appropriate for this small client site and avoids fragile custom SQL. Optional PDF text extraction may be added only if it stays portable and fallback-safe.
 
 ## PDF Text Extraction Tradeoffs
 

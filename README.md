@@ -9,6 +9,8 @@ A small WordPress project for a simple recipe PDF library. The client can upload
 - Searchable frontend library with shortcode: `[recipe_pdf_library]`
 - Home page recipe gallery/list toggle with PDF preview thumbnails
 - Dedicated **Manage Recipes** page for add/edit/delete
+- Signed-out home view shows publicly shared recipes
+- Recipe visibility control (Public/Private) from Manage Recipes
 - Search by title, PDF filename, category, and tag
 - Fallback-safe PDF text indexing for some machine-readable PDFs
 - In-browser PDF view and download links (secure endpoint)
@@ -38,10 +40,10 @@ The plugin handles business logic:
 - PDF upload and validation
 - Search behavior and PDF text indexing
 - Frontend authenticated create/edit/delete actions
-- Per-user private recipe collections
+- Per-user recipe management with optional public sharing
 - Secure inline PDF viewing and download endpoints
 
-The login form is on `/login`. The homepage shows a login prompt when signed out.
+The login form is on `/login`. Signed-out visitors can browse public recipes on home and use the navbar **Sign In** link for account access.
 Archive navigation is intentionally removed; `/recipe-archive/` is redirected to home.
 
 ## Handoff Notes

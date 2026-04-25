@@ -44,8 +44,9 @@ This is a small WordPress recipe PDF library for an Upwork client job titled "Re
 - Commit 19 in progress: compact navbar and responsive breakpoint polish.
 - Commit 20 in progress: switch branding to `rl_logo_shelf.png` and restore navbar title text.
 - Commit 21 in progress: remove home subheadings and apply final sizing pass.
+- Commit 22 in progress: add public recipe browsing for signed-out users and visibility badges.
 - Site structure now:
-  - Home (`/`): searchable recipe library with Gallery/List toggle (no extra heading/subheading blocks)
+  - Home (`/`): searchable recipe library with Gallery/List toggle (signed-in: own recipes, signed-out: public recipes only)
   - Manage Recipes (`/manage-recipes/`): add/edit/delete UI
   - Login (`/login/`): form-only page
 - Archive link removed from navigation and archive route redirects to home.
@@ -87,6 +88,7 @@ Manual WordPress QA in LocalWP browser:
 4. Confirm `/recipe-archive/` redirects to `/`.
 5. Confirm mobile/tablet/desktop layout behavior is smooth.
 6. Confirm home page no longer shows heading/subheading intro copy.
+7. Confirm visibility toggle and Public/Private badges are working.
 
 ## Latest Commit Summary
 
@@ -112,3 +114,4 @@ Manual WordPress QA in LocalWP browser:
 - Pending commit: `style: compact navbar and improve responsive breakpoints`
 - Pending commit: `style: apply shelf logo branding and navbar title text`
 - Pending commit: `style: finalize home hero removal and responsive sizing`
+- Pending commit: `feat: add public recipe browsing and visibility badges`

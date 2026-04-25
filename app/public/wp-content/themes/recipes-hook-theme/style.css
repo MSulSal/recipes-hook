@@ -192,6 +192,7 @@ a:focus {
 
 .rht-manage-form input[type="text"],
 .rht-manage-form input[type="file"],
+.rht-manage-form select,
 .rht-manage-form textarea {
 	background: #fff;
 	border: 1px solid var(--rht-border);
@@ -208,6 +209,7 @@ a:focus {
 }
 
 .rht-manage-form input:focus,
+.rht-manage-form select:focus,
 .rht-manage-form textarea:focus {
 	border-color: var(--rht-accent);
 	box-shadow: 0 0 0 2px rgba(47, 122, 85, 0.14);
@@ -742,6 +744,25 @@ a:focus {
 	padding: 0.14rem 0.45rem;
 }
 
+.rpl-visibility-badge {
+	border-radius: 999px;
+	font-size: 0.76rem;
+	font-weight: 800;
+	padding: 0.15rem 0.5rem;
+}
+
+.rpl-visibility-badge--public {
+	background: #e8f7ee;
+	border-color: #b9e2ca;
+	color: #21593d;
+}
+
+.rpl-visibility-badge--private {
+	background: #f3f1fc;
+	border-color: #d5cdf3;
+	color: #4a3f86;
+}
+
 .rpl-recipe-card__terms,
 .rpl-recipe-card__tags {
 	display: flex;
@@ -794,6 +815,14 @@ a:focus {
 	color: var(--rpl-muted);
 	font-size: 0.82rem;
 	font-weight: 600;
+	padding: 0;
+}
+
+.rpl-recipe-grid--list .rpl-recipe-card__meta .rpl-visibility-badge {
+	background: transparent;
+	border: 0;
+	color: var(--rpl-ink);
+	font-weight: 700;
 	padding: 0;
 }
 

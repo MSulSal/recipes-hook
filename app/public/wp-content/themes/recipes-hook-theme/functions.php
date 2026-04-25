@@ -110,7 +110,7 @@ function rht_enforce_login_gate(): void {
 		return;
 	}
 
-	if ( is_front_page() || is_home() || is_page() || is_singular( 'recipe_pdf' ) || is_post_type_archive( 'recipe_pdf' ) ) {
+	if ( is_page( 'manage-recipes' ) ) {
 		global $wp;
 		$current_url = home_url( add_query_arg( array(), $wp->request ) );
 		$login_url   = add_query_arg(
@@ -122,6 +122,24 @@ function rht_enforce_login_gate(): void {
 
 		wp_safe_redirect( $login_url );
 		exit;
+	}
+
+	if ( is_singular( 'recipe_pdf' ) ) {
+		$recipe = get_queried_object();
+
+		if ( $recipe instanceof WP_Post && 'private' === get_post_status( $recipe ) ) {
+			global $wp;
+			$current_url = home_url( add_query_arg( array(), $wp->request ) );
+			$login_url   = add_query_arg(
+				array(
+					'redirect_to' => esc_url_raw( $current_url ),
+				),
+				home_url( '/login/' )
+			);
+
+			wp_safe_redirect( $login_url );
+			exit;
+		}
 	}
 }
 add_action( 'template_redirect', 'rht_enforce_login_gate' );

@@ -6,8 +6,10 @@ if ( have_posts() ) :
 		the_post();
 		$post_id = get_the_ID();
 		$author_id = (int) get_post_field( 'post_author', $post_id );
+		$is_public = 'publish' === get_post_status( $post_id );
+		$can_view  = $is_public || ( is_user_logged_in() && get_current_user_id() === $author_id );
 
-		if ( ! is_user_logged_in() || get_current_user_id() !== $author_id ) {
+		if ( ! $can_view ) {
 			?>
 			<div class="rpl-empty-state">
 				<h2><?php esc_html_e( 'Sign in required', 'recipes-hook-theme' ); ?></h2>

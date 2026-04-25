@@ -26,7 +26,7 @@ Use the dedicated login page:
 `/login`
 
 The login page is a standalone form-only screen.
-When logged out, protected site routes redirect to `/login`.
+Guests can browse public recipes on home. Only management routes (like `/manage-recipes/`) require sign-in.
 
 ## Branding
 
@@ -45,12 +45,13 @@ This page is where you can:
 
 - Add a recipe with PDF upload
 - Edit title, tags, categories, and notes
+- Choose visibility as **Private** or **Public**
 - Replace or remove the current PDF
 - Delete a recipe (moves to Trash)
 
 This is the primary workflow for everyday use. wp-admin remains available for advanced settings.
 
-Logged-out visitors are redirected to `/login` for protected pages.
+Logged-out visitors can still browse public recipes on home and can click **Sign In** in the navbar to access account features.
 
 ## Add a Recipe PDF
 
@@ -77,8 +78,14 @@ The home page is the main recipe library and shows:
 - Gallery/List view toggle
 - Recipe thumbnails (PDF preview image when available)
 - Recipe cards/list rows
+- A visibility badge on each recipe card (**Public** or **Private**)
 
 You can still place `[recipe_pdf_library]` on any other page if needed.
+
+On home:
+
+- Signed-in users see their own recipes (both private and public)
+- Signed-out users see only public recipes
 
 Clicking **View Recipe** opens a recipe detail page with the PDF embedded in the browser when supported. Visitors can also open the PDF in a new tab or download it.
 

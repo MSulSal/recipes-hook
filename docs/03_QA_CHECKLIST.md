@@ -30,6 +30,9 @@ Record results here as features are built.
 - Tablet layout (741px-1024px): Ready for manual test
 - Desktop layout (1025px+): Ready for manual test
 - Home intro headings removed: Ready for manual test
+- Signed-out home shows public recipes only: Ready for manual test
+- Recipe visibility toggle (Public/Private): Ready for manual test
+- Visibility badge on recipe cards: Ready for manual test
 
 ## Manual QA Notes
 
@@ -44,6 +47,7 @@ Record results here as features are built.
 - Commit 9: Confirm UI polish: library header text displays, active filter pills appear, recipe card metadata/actions are visible, and detail header/action layout is clean on desktop and mobile.
 - Commit 17: Confirm home page library has working search/category filters plus Gallery/List toggle; confirm PDF preview image shows when available; confirm `/manage-recipes/` owns add/edit/delete UI; confirm `/recipe-archive/` redirects to home.
 - Commit 19: Confirm navbar height is compact with logo-only brand, and verify seamless behavior across mobile/tablet/desktop breakpoints (search controls, cards, actions, and manage page layout).
+- Commit 22: Confirm signed-out users can browse public recipes on home, manage page still requires sign-in, recipe visibility can be set on create/edit, and cards show visibility badges.
 
 ## Final Manual Demo Flow
 
