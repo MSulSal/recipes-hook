@@ -27,6 +27,7 @@ Record results here as features are built.
 - Commit 6: Upload a machine-readable PDF, publish the recipe, then search for a distinctive word from inside the PDF. Also confirm a scanned PDF still works by title/filename/category/tag if text is not indexed.
 - Commit 7: Check the recipe library and detail page around mobile width. Confirm the search form stacks, buttons fit, cards do not overflow, and the PDF viewer remains usable.
 - Commit 8: Documentation finalized. Code syntax checks passed with LocalWP PHP, but browser/wp-admin QA still needs to be performed in the running LocalWP site.
+- Commit 9: Confirm UI polish: library header text displays, active filter pills appear, recipe card metadata/actions are visible, and detail header/action layout is clean on desktop and mobile.
 
 ## Final Manual Demo Flow
 

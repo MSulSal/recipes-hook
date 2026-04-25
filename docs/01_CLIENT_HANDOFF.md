@@ -34,6 +34,8 @@ Create a normal WordPress page titled **Recipes**, add the shortcode to the page
 
 Clicking **View Recipe** opens a recipe detail page with the PDF embedded in the browser when supported. Visitors can also open the PDF in a new tab or download it.
 
+The library page shows active search/category filters and a result count so it is easy to confirm what is being filtered.
+
 ## Search
 
 Search matches recipe titles, PDF filenames, categories, and tags. The site also tries to index text inside machine-readable PDFs, so visitors may be able to search for words that appear inside the PDF itself.

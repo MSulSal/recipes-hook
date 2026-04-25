@@ -36,6 +36,10 @@ function rpl_render_recipe_library_shortcode(): string {
 	ob_start();
 	?>
 	<div class="rpl-library">
+		<header class="rpl-library-header">
+			<h2><?php esc_html_e( 'Recipe Library', 'recipe-pdf-library' ); ?></h2>
+			<p><?php esc_html_e( 'Browse, search, and open recipe PDFs.', 'recipe-pdf-library' ); ?></p>
+		</header>
 		<form class="rpl-search-form" method="get">
 			<div class="rpl-search-field">
 				<label for="rpl-recipe-search"><?php esc_html_e( 'Search recipes', 'recipe-pdf-library' ); ?></label>
@@ -67,6 +71,7 @@ function rpl_render_recipe_library_shortcode(): string {
 				</a>
 			<?php endif; ?>
 		</form>
+		<?php rpl_render_active_filters( $search, $category_slug, $categories ); ?>
 
 		<?php if ( empty( $recipes ) ) : ?>
 			<div class="rpl-empty-state">
@@ -160,7 +165,9 @@ function rpl_filter_recipes_by_search( array $recipes, string $search ): array {
 }
 
 function rpl_render_recipe_card( WP_Post $recipe ): void {
+	$pdf_url      = rpl_get_recipe_pdf_url( $recipe->ID );
 	$pdf_filename = rpl_get_recipe_pdf_filename( $recipe->ID );
+	$published    = get_the_date( get_option( 'date_format' ), $recipe );
 	$categories   = get_the_terms( $recipe->ID, 'recipe_category' );
 	$tags         = get_the_terms( $recipe->ID, 'recipe_tag' );
 	?>
@@ -172,12 +179,25 @@ function rpl_render_recipe_card( WP_Post $recipe ): void {
 			<?php if ( $pdf_filename ) : ?>
 				<p class="rpl-recipe-card__filename"><?php echo esc_html( $pdf_filename ); ?></p>
 			<?php endif; ?>
+			<div class="rpl-recipe-card__meta">
+				<span><?php echo esc_html__( 'PDF Recipe', 'recipe-pdf-library' ); ?></span>
+				<?php if ( $published ) : ?>
+					<span><?php echo esc_html( $published ); ?></span>
+				<?php endif; ?>
+			</div>
 			<?php rpl_render_term_list( $categories, 'rpl-recipe-card__terms' ); ?>
 			<?php rpl_render_term_list( $tags, 'rpl-recipe-card__tags' ); ?>
 		</div>
-		<a class="rpl-view-button" href="<?php echo esc_url( get_permalink( $recipe ) ); ?>">
-			<?php esc_html_e( 'View Recipe', 'recipe-pdf-library' ); ?>
-		</a>
+		<div class="rpl-recipe-card__actions">
+			<a class="rpl-view-button" href="<?php echo esc_url( get_permalink( $recipe ) ); ?>">
+				<?php esc_html_e( 'View Recipe', 'recipe-pdf-library' ); ?>
+			</a>
+			<?php if ( $pdf_url ) : ?>
+				<a class="rpl-secondary-link" href="<?php echo esc_url( $pdf_url ); ?>" target="_blank" rel="noopener">
+					<?php esc_html_e( 'Open PDF', 'recipe-pdf-library' ); ?>
+				</a>
+			<?php endif; ?>
+		</div>
 	</article>
 	<?php
 }
@@ -231,4 +251,33 @@ function rpl_current_url(): string {
 	global $wp;
 
 	return home_url( add_query_arg( array(), $wp->request ) );
+}
+
+function rpl_render_active_filters( string $search, string $category_slug, $categories ): void {
+	$has_filters = ( '' !== $search || '' !== $category_slug );
+
+	if ( ! $has_filters ) {
+		return;
+	}
+
+	$category_name = '';
+
+	if ( ! is_wp_error( $categories ) ) {
+		foreach ( $categories as $category ) {
+			if ( $category_slug === $category->slug ) {
+				$category_name = $category->name;
+				break;
+			}
+		}
+	}
+	?>
+	<div class="rpl-active-filters" aria-label="<?php esc_attr_e( 'Active filters', 'recipe-pdf-library' ); ?>">
+		<?php if ( '' !== $search ) : ?>
+			<span class="rpl-filter-pill"><?php echo esc_html( sprintf( __( 'Search: %s', 'recipe-pdf-library' ), $search ) ); ?></span>
+		<?php endif; ?>
+		<?php if ( '' !== $category_slug ) : ?>
+			<span class="rpl-filter-pill"><?php echo esc_html( sprintf( __( 'Category: %s', 'recipe-pdf-library' ), $category_name ? $category_name : $category_slug ) ); ?></span>
+		<?php endif; ?>
+	</div>
+	<?php
 }

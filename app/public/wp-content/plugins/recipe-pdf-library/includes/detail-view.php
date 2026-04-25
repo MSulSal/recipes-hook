@@ -31,6 +31,10 @@ function rpl_filter_single_recipe_content( string $content ): string {
 	ob_start();
 	?>
 	<div class="rpl-recipe-detail">
+		<header class="rpl-recipe-detail__header">
+			<h2><?php echo esc_html( get_the_title() ); ?></h2>
+			<p><?php esc_html_e( 'Recipe PDF details and quick actions.', 'recipe-pdf-library' ); ?></p>
+		</header>
 		<div class="rpl-recipe-detail__meta">
 			<?php rpl_render_term_list( $categories, 'rpl-recipe-card__terms' ); ?>
 			<?php rpl_render_term_list( $tags, 'rpl-recipe-card__tags' ); ?>

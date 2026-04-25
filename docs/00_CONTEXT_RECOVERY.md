@@ -31,6 +31,7 @@ This is a small WordPress recipe PDF library for an Upwork client job titled "Re
 - Commit 6 complete: fallback-safe PDF text indexing added with no Composer dependency. It stores extracted text in hidden post meta and keeps title/filename/category/tag search as the reliable baseline.
 - Commit 7 complete: shortcode and detail page CSS polished for a cleaner responsive demo.
 - Commit 8 complete: final documentation and proposal notes.
+- Commit 9 in progress: UI-first polish pass on library and detail view markup/CSS for demo readiness.
 - The client workflow remains inside WordPress admin.
 
 ## Commands Run
@@ -70,3 +71,4 @@ Manual WordPress QA: activate plugin, create the Recipes page with `[recipe_pdf_
 - `feat: index PDF text for recipe search`
 - `style: polish recipe library layout for client demo`
 - `docs: finalize client handoff and proposal notes`
+- Pending commit: `style: refine recipe library ui and detail experience`
