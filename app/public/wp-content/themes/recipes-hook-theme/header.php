@@ -18,7 +18,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<img class="rht-brand__logo" src="<?php echo esc_url( get_stylesheet_directory_uri() . '/assets/rl_logo.png' ); ?>" alt="<?php esc_attr_e( 'Recipes Library', 'recipes-hook-theme' ); ?>">
 		</a>
 		<nav class="rht-nav">
-			<a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php esc_html_e( 'Recipes', 'recipes-hook-theme' ); ?></a>
 			<?php if ( is_user_logged_in() ) : ?>
 				<a href="<?php echo esc_url( home_url( '/manage-recipes/' ) ); ?>"><?php esc_html_e( 'Manage Recipes', 'recipes-hook-theme' ); ?></a>
 				<a href="<?php echo esc_url( wp_logout_url( home_url( '/' ) ) ); ?>"><?php esc_html_e( 'Log Out', 'recipes-hook-theme' ); ?></a>

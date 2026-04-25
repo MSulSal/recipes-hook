@@ -64,8 +64,8 @@ a:focus {
 	display: flex;
 	gap: 1rem;
 	justify-content: space-between;
-	padding-top: 0.7rem;
-	padding-bottom: 0.7rem;
+	padding-top: 0.3rem;
+	padding-bottom: 0.3rem;
 }
 
 .rht-brand {
@@ -79,7 +79,7 @@ a:focus {
 .rht-brand__logo {
 	display: block;
 	height: auto;
-	width: 18rem;
+	width: 14.5rem;
 	object-fit: contain;
 }
 
@@ -933,7 +933,7 @@ a:focus {
 	}
 
 	.rht-brand__logo {
-		width: min(84vw, 16rem);
+		width: min(82vw, 13rem);
 	}
 
 	.rht-manage-grid {
