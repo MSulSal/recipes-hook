@@ -25,7 +25,8 @@ This is a small WordPress recipe PDF library for an Upwork client job titled "Re
 
 - Commit 1 complete: repo and docs scaffold.
 - Commit 2 complete: plugin scaffold added with `recipe_pdf` post type, `recipe_category`, and `recipe_tag`.
-- Commit 3 in progress: PDF upload/select field added to recipe edit screen with PDF validation, nonce/capability checks, admin columns, and filename-to-title helper.
+- Commit 3 complete: PDF upload/select field added to recipe edit screen with PDF validation, nonce/capability checks, admin columns, and filename-to-title helper.
+- Commit 4 in progress: `[recipe_pdf_library]` shortcode added with search, category filter, cards, empty state, no-results state, and scoped CSS.
 - The client workflow remains inside WordPress admin.
 
 ## Commands Run
@@ -50,10 +51,11 @@ This is a small WordPress recipe PDF library for an Upwork client job titled "Re
 
 ## Next Recommended Step
 
-Create the shortcode library UI so published recipes can be searched and viewed on a public page.
+Create the single recipe PDF viewer template behavior.
 
 ## Latest Commit Summary
 
 - `chore: initialize WordPress project repo and documentation`
 - `feat: scaffold recipe PDF library plugin`
-- Pending commit: `feat: add PDF upload field for recipes`
+- `feat: add PDF upload field for recipes`
+- Pending commit: `feat: add recipe library shortcode with search and filters`

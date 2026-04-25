@@ -7,6 +7,7 @@ A small WordPress project for a simple recipe PDF library. The client can upload
 - Custom WordPress plugin: `Recipe PDF Library`
 - Recipe custom post type for PDF-based recipes
 - Planned searchable frontend library with shortcode: `[recipe_pdf_library]`
+- Search by title, PDF filename, category, and tag
 - Planned in-browser PDF view and download links
 - Client handoff documentation in `docs/`
 - Routine client management through WordPress admin only

@@ -10,7 +10,7 @@ Each recipe will be represented as a `recipe_pdf` post. This keeps recipes manag
 
 ## Search
 
-Search will begin with reliable WordPress data: title, PDF filename, categories, and tags. Optional PDF text extraction may be added only if it stays portable and fallback-safe.
+Search begins with reliable WordPress data: title, PDF filename, categories, and tags. The shortcode loads published recipe posts and applies a simple PHP-side match, which is appropriate for this small client site and avoids fragile custom SQL. Optional PDF text extraction may be added only if it stays portable and fallback-safe.
 
 ## PDF Text Extraction Tradeoffs
 

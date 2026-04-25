@@ -28,9 +28,11 @@ The recipe library page will use this shortcode:
 
 `[recipe_pdf_library]`
 
+Create a normal WordPress page titled **Recipes**, add the shortcode to the page content, and publish it. Visitors will see a search box, category filter, and recipe cards.
+
 ## Search
 
-Search is planned to match recipe titles, PDF filenames, categories, and tags. If PDF text indexing is added, machine-readable PDF text may also be searchable.
+Search matches recipe titles, PDF filenames, categories, and tags. If PDF text indexing is added, machine-readable PDF text may also be searchable.
 
 ## Scanned PDFs
 
