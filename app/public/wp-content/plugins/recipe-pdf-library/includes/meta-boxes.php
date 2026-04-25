@@ -101,6 +101,7 @@ function rpl_save_recipe_pdf_meta( int $post_id, WP_Post $post ): void {
 
 	if ( ! $attachment_id ) {
 		delete_post_meta( $post_id, RPL_PDF_META_KEY );
+		rpl_clear_pdf_text_index( $post_id );
 		return;
 	}
 
@@ -116,6 +117,7 @@ function rpl_save_recipe_pdf_meta( int $post_id, WP_Post $post ): void {
 	}
 
 	update_post_meta( $post_id, RPL_PDF_META_KEY, $attachment_id );
+	rpl_index_recipe_pdf_text( $post_id, $attachment_id );
 	rpl_maybe_set_title_from_pdf( $post_id, $post, $attachment_id );
 }
 add_action( 'save_post_recipe_pdf', 'rpl_save_recipe_pdf_meta', 10, 2 );
@@ -223,4 +225,18 @@ function rpl_recipe_column_content( string $column, int $post_id ): void {
 	);
 }
 add_action( 'manage_recipe_pdf_posts_custom_column', 'rpl_recipe_column_content', 10, 2 );
+
+function rpl_pdf_index_admin_note(): void {
+	$screen = get_current_screen();
+
+	if ( ! $screen || 'recipe_pdf' !== $screen->post_type ) {
+		return;
+	}
+	?>
+	<div class="notice notice-info">
+		<p><?php esc_html_e( 'Recipe PDF Library can try to index text inside machine-readable PDFs for search. Scanned/image PDFs may not have searchable text, so clear titles, categories, and tags are still recommended.', 'recipe-pdf-library' ); ?></p>
+	</div>
+	<?php
+}
+add_action( 'admin_notices', 'rpl_pdf_index_admin_note' );
 

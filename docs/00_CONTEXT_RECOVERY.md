@@ -27,7 +27,8 @@ This is a small WordPress recipe PDF library for an Upwork client job titled "Re
 - Commit 2 complete: plugin scaffold added with `recipe_pdf` post type, `recipe_category`, and `recipe_tag`.
 - Commit 3 complete: PDF upload/select field added to recipe edit screen with PDF validation, nonce/capability checks, admin columns, and filename-to-title helper.
 - Commit 4 complete: `[recipe_pdf_library]` shortcode added with search, category filter, cards, empty state, no-results state, and scoped CSS.
-- Commit 5 in progress: single recipe pages display PDF actions, browser PDF iframe, categories/tags, graceful missing-PDF message, and back link.
+- Commit 5 complete: single recipe pages display PDF actions, browser PDF iframe, categories/tags, graceful missing-PDF message, and back link.
+- Commit 6 in progress: fallback-safe PDF text indexing added with no Composer dependency. It stores extracted text in hidden post meta and keeps title/filename/category/tag search as the reliable baseline.
 - The client workflow remains inside WordPress admin.
 
 ## Commands Run
@@ -52,7 +53,7 @@ This is a small WordPress recipe PDF library for an Upwork client job titled "Re
 
 ## Next Recommended Step
 
-Decide whether PDF text indexing is feasible without adding a fragile dependency, then implement it or document the limitation clearly.
+Polish responsive styling for the client demo.
 
 ## Latest Commit Summary
 
@@ -60,4 +61,5 @@ Decide whether PDF text indexing is feasible without adding a fragile dependency
 - `feat: scaffold recipe PDF library plugin`
 - `feat: add PDF upload field for recipes`
 - `feat: add recipe library shortcode with search and filters`
-- Pending commit: `feat: add recipe detail PDF viewer`
+- `feat: add recipe detail PDF viewer`
+- Pending commit: `feat: index PDF text for recipe search`

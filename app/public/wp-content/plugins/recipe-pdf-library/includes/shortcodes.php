@@ -130,6 +130,7 @@ function rpl_filter_recipes_by_search( array $recipes, string $search ): array {
 				$haystack = array(
 					$recipe->post_title,
 					rpl_get_recipe_pdf_filename( $recipe->ID ),
+					rpl_get_recipe_pdf_index_text( $recipe->ID ),
 				);
 
 				$terms = wp_get_post_terms( $recipe->ID, array( 'recipe_category', 'recipe_tag' ) );

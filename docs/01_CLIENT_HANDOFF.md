@@ -34,11 +34,11 @@ Clicking **View Recipe** opens a recipe detail page with the PDF embedded in the
 
 ## Search
 
-Search matches recipe titles, PDF filenames, categories, and tags. If PDF text indexing is added, machine-readable PDF text may also be searchable.
+Search matches recipe titles, PDF filenames, categories, and tags. The site also tries to index text inside machine-readable PDFs, so visitors may be able to search for words that appear inside the PDF itself.
 
 ## Scanned PDFs
 
-If a PDF is a scanned image, WordPress may not be able to search the text inside it. In that case, use a descriptive title, category, and tags.
+If a PDF is a scanned image, WordPress may not be able to search the text inside it. In that case, use a descriptive title, category, and tags. The recipe will still display and download normally.
 
 ## Replace or Delete a PDF
 

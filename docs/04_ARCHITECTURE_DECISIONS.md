@@ -16,7 +16,7 @@ Search begins with reliable WordPress data: title, PDF filename, categories, and
 
 ## PDF Text Extraction Tradeoffs
 
-PDF text extraction is useful for machine-readable PDFs but unreliable for scanned/image PDFs. The site must work even when extraction fails.
+PDF text extraction is useful for machine-readable PDFs but unreliable for scanned/image PDFs. The plugin uses a small fallback-safe extractor instead of a Composer dependency so the plugin remains easy to zip and upload on hosts with small import limits. Extraction failure does not block saving or displaying a recipe; it only means text inside that PDF may not be searchable.
 
 ## Security Decisions
 
