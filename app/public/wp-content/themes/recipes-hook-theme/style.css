@@ -80,8 +80,8 @@ a:focus {
 
 .rht-brand__logo {
 	display: block;
-	height: 1.9rem;
-	width: 1.9rem;
+	height: 2.5rem;
+	width: 2.5rem;
 	object-fit: contain;
 }
 
@@ -335,7 +335,7 @@ a:focus {
 	height: auto;
 	margin: 0 auto 1.05rem;
 	text-decoration: none;
-	width: 5.25rem;
+	width: 7.25rem;
 }
 
 .rht-login-brand__logo {
