@@ -36,6 +36,7 @@ This is a small WordPress recipe PDF library for an Upwork client job titled "Re
 - Commit 11 complete: authenticated frontend recipe create/edit/delete UI and action handlers.
 - Commit 12 complete: polished frontend login panel with custom styled auth form.
 - Commit 13 in progress: enforce per-user recipe collections, move login form to dedicated `/login` page, and keep login page form-only (no navbar).
+- Commit 14 in progress: enforce login redirect gate for protected frontend routes and honor `redirect_to` on `/login`.
 - Client can manage recipes from the site UI after login, with wp-admin still available.
 
 ## Commands Run
@@ -81,3 +82,5 @@ Manual WordPress QA: activate plugin/theme, log in via site UI, add/edit/delete 
 - `feat: add authenticated frontend recipe management ui`
 - `style: polish frontend login experience`
 - Pending commit: `feat: enforce per-user recipe collections and dedicated login page`
+- `feat: enforce per-user recipe collections and dedicated login page`
+- Pending commit: `feat: enforce frontend login redirects for protected routes`

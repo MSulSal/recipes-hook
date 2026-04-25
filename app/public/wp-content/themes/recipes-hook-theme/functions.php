@@ -61,3 +61,28 @@ function rht_front_status_message( string $status ): string {
 
 	return isset( $map[ $status ] ) ? $map[ $status ] : '';
 }
+
+function rht_enforce_login_gate(): void {
+	if ( is_user_logged_in() || is_admin() || wp_doing_ajax() ) {
+		return;
+	}
+
+	if ( is_page( 'login' ) ) {
+		return;
+	}
+
+	if ( is_front_page() || is_home() || is_page() || is_singular( 'recipe_pdf' ) || is_post_type_archive( 'recipe_pdf' ) ) {
+		global $wp;
+		$current_url = home_url( add_query_arg( array(), $wp->request ) );
+		$login_url   = add_query_arg(
+			array(
+				'redirect_to' => esc_url_raw( $current_url ),
+			),
+			home_url( '/login/' )
+		);
+
+		wp_safe_redirect( $login_url );
+		exit;
+	}
+}
+add_action( 'template_redirect', 'rht_enforce_login_gate' );

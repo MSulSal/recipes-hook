@@ -26,6 +26,7 @@ Use the dedicated login page:
 `/login`
 
 The login page is a standalone form-only screen.
+When logged out, protected site routes redirect to `/login`.
 
 ## Manage Recipes From the Site
 

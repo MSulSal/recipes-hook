@@ -3,6 +3,16 @@ if ( is_user_logged_in() ) {
 	wp_safe_redirect( home_url( '/' ) );
 	exit;
 }
+
+$redirect_target = home_url( '/' );
+
+if ( isset( $_GET['redirect_to'] ) ) {
+	$candidate = esc_url_raw( wp_unslash( $_GET['redirect_to'] ) );
+
+	if ( $candidate && 0 === strpos( $candidate, home_url() ) ) {
+		$redirect_target = $candidate;
+	}
+}
 ?><!doctype html>
 <html <?php language_attributes(); ?>>
 <head>
@@ -25,7 +35,7 @@ if ( is_user_logged_in() ) {
 			<span><?php esc_html_e( 'Keep me signed in', 'recipes-hook-theme' ); ?></span>
 		</label>
 
-		<input type="hidden" name="redirect_to" value="<?php echo esc_url( home_url( '/' ) ); ?>">
+		<input type="hidden" name="redirect_to" value="<?php echo esc_url( $redirect_target ); ?>">
 		<button type="submit" class="rht-auth-submit"><?php esc_html_e( 'Log In', 'recipes-hook-theme' ); ?></button>
 		<a class="rht-auth-forgot" href="<?php echo esc_url( wp_lostpassword_url( home_url( '/login/' ) ) ); ?>"><?php esc_html_e( 'Forgot password?', 'recipes-hook-theme' ); ?></a>
 	</form>
