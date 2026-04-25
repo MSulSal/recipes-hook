@@ -56,7 +56,7 @@ a:focus {
 .rht-page-shell {
 	margin: 0 auto;
 	max-width: 1120px;
-	padding: 1rem 1.1rem;
+	padding: 1.05rem 1.2rem;
 }
 
 .rht-site-header__inner {
@@ -64,30 +64,38 @@ a:focus {
 	display: flex;
 	gap: 1rem;
 	justify-content: space-between;
-	padding-top: 0.3rem;
-	padding-bottom: 0.3rem;
+	padding-top: 0.28rem;
+	padding-bottom: 0.28rem;
 }
 
 .rht-brand {
 	align-items: center;
 	color: var(--rht-ink);
 	display: inline-flex;
-	gap: 0;
+	gap: 0.5rem;
 	text-decoration: none;
 }
 
 .rht-brand__logo {
 	display: block;
-	height: auto;
-	width: 14.5rem;
+	height: 2.2rem;
+	width: auto;
+	max-width: min(44vw, 12.4rem);
 	object-fit: contain;
+}
+
+.rht-brand__title {
+	color: var(--rht-ink);
+	font-size: 1.3rem;
+	font-weight: 800;
+	line-height: 1;
 }
 
 .rht-nav {
 	align-items: center;
 	display: flex;
 	flex-wrap: wrap;
-	gap: 0.6rem;
+	gap: 0.4rem;
 }
 
 .rht-nav a {
@@ -95,8 +103,9 @@ a:focus {
 	color: var(--rht-muted);
 	font-size: 1rem;
 	font-weight: 700;
-	padding: 0.3rem 0.55rem;
+	padding: 0.3rem 0.5rem;
 	text-decoration: none;
+	white-space: nowrap;
 }
 
 .rht-nav a:hover,
@@ -329,9 +338,9 @@ a:focus {
 .rht-login-brand {
 	display: block;
 	height: auto;
-	margin: 0 auto 0.55rem;
+	margin: 0 auto 0.35rem;
 	text-decoration: none;
-	width: 15rem;
+	width: min(92vw, 20rem);
 }
 
 .rht-login-brand__logo {
@@ -516,8 +525,8 @@ a:focus {
 	border: 1px solid var(--rpl-border);
 	border-radius: 10px;
 	color: var(--rpl-ink);
-	min-height: 2.75rem;
-	padding: 0.66rem 0.75rem;
+	min-height: 2.9rem;
+	padding: 0.72rem 0.82rem;
 	width: 100%;
 }
 
@@ -536,12 +545,12 @@ a:focus {
 	border-radius: 10px;
 	color: #fff;
 	display: inline-flex;
-	font-size: 0.92rem;
+	font-size: 0.96rem;
 	font-weight: 700;
 	justify-content: center;
 	line-height: 1.2;
-	min-height: 2.75rem;
-	padding: 0.72rem 0.95rem;
+	min-height: 2.9rem;
+	padding: 0.74rem 1rem;
 	text-decoration: none;
 }
 
@@ -695,7 +704,7 @@ a:focus {
 }
 
 .rpl-recipe-card__title {
-	font-size: 1.18rem;
+	font-size: 1.24rem;
 	line-height: 1.3;
 	margin: 0;
 }
@@ -929,11 +938,23 @@ a:focus {
 @media (max-width: 740px) {
 	.rht-site-header__inner {
 		flex-direction: column;
-		gap: 0.55rem;
+		gap: 0.42rem;
+		padding-top: 0.35rem;
+		padding-bottom: 0.4rem;
 	}
 
 	.rht-brand__logo {
-		width: min(82vw, 13rem);
+		height: 2rem;
+		max-width: min(72vw, 10.4rem);
+	}
+
+	.rht-brand__title {
+		font-size: 1.12rem;
+	}
+
+	.rht-nav {
+		justify-content: center;
+		width: 100%;
 	}
 
 	.rht-manage-grid {
@@ -991,5 +1012,46 @@ a:focus {
 	.rpl-pdf-viewer,
 	.rpl-pdf-viewer iframe {
 		min-height: 62vh;
+	}
+}
+
+@media (min-width: 741px) and (max-width: 1024px) {
+	.rht-site-header__inner {
+		padding-left: 0.9rem;
+		padding-right: 0.9rem;
+	}
+
+	.rht-brand__logo {
+		height: 2.05rem;
+		max-width: min(42vw, 11.2rem);
+	}
+
+	.rht-brand__title {
+		font-size: 1.2rem;
+	}
+
+	.rht-nav a {
+		font-size: 0.92rem;
+		padding: 0.24rem 0.42rem;
+	}
+
+	.rht-manage-grid {
+		grid-template-columns: 1fr;
+	}
+
+	.rpl-search-form {
+		grid-template-columns: minmax(14rem, 1fr) minmax(11rem, 14rem) auto;
+	}
+
+	.rpl-search-form .rpl-search-button {
+		width: 100%;
+	}
+
+	.rpl-search-form .rpl-clear-link {
+		grid-column: 1 / -1;
+	}
+
+	.rpl-recipe-grid--gallery {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
 	}
 }

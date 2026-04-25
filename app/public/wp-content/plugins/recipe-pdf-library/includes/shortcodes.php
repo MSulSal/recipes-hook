@@ -14,7 +14,17 @@ function rpl_register_shortcodes(): void {
 }
 add_action( 'init', 'rpl_register_shortcodes' );
 
-function rpl_render_recipe_library_shortcode(): string {
+function rpl_render_recipe_library_shortcode( array $atts = array() ): string {
+	$atts = shortcode_atts(
+		array(
+			'show_header' => 'yes',
+		),
+		$atts,
+		'recipe_pdf_library'
+	);
+
+	$show_header = 'no' !== strtolower( (string) $atts['show_header'] );
+
 	if ( ! is_user_logged_in() ) {
 		return rpl_render_library_login_required();
 	}
@@ -35,10 +45,12 @@ function rpl_render_recipe_library_shortcode(): string {
 	ob_start();
 	?>
 	<div class="rpl-library">
-		<header class="rpl-library-header">
-			<h2><?php esc_html_e( 'Recipe Library', 'recipe-pdf-library' ); ?></h2>
-			<p><?php esc_html_e( 'Browse, search, and open recipe PDFs.', 'recipe-pdf-library' ); ?></p>
-		</header>
+		<?php if ( $show_header ) : ?>
+			<header class="rpl-library-header">
+				<h2><?php esc_html_e( 'Recipe Library', 'recipe-pdf-library' ); ?></h2>
+				<p><?php esc_html_e( 'Browse, search, and open recipe PDFs.', 'recipe-pdf-library' ); ?></p>
+			</header>
+		<?php endif; ?>
 		<form class="rpl-search-form" method="get">
 			<div class="rpl-search-field">
 				<label for="rpl-recipe-search"><?php esc_html_e( 'Search recipes', 'recipe-pdf-library' ); ?></label>

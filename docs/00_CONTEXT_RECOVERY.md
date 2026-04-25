@@ -41,8 +41,11 @@ This is a small WordPress recipe PDF library for an Upwork client job titled "Re
 - Commit 16 complete: increase login/navbar logo sizes.
 - Commit 17 in progress: home/gallery list split and separate manage page UX polish.
 - Commit 18 in progress: enforce private-only recipes and remove public/private UI noise.
+- Commit 19 in progress: compact navbar and responsive breakpoint polish.
+- Commit 20 in progress: switch branding to `rl_logo_shelf.png` and restore navbar title text.
+- Commit 21 in progress: remove home subheadings and apply final sizing pass.
 - Site structure now:
-  - Home (`/`): searchable recipe library with Gallery/List toggle
+  - Home (`/`): searchable recipe library with Gallery/List toggle (no extra heading/subheading blocks)
   - Manage Recipes (`/manage-recipes/`): add/edit/delete UI
   - Login (`/login/`): form-only page
 - Archive link removed from navigation and archive route redirects to home.
@@ -80,8 +83,10 @@ This is a small WordPress recipe PDF library for an Upwork client job titled "Re
 Manual WordPress QA in LocalWP browser:
 1. Confirm Home shows searchable library with Gallery/List toggle and thumbnail previews.
 2. Confirm `/manage-recipes/` handles add/edit/delete.
-3. Confirm larger logo on navbar and login page.
+3. Confirm navbar is compact and logo-brand is correctly sized.
 4. Confirm `/recipe-archive/` redirects to `/`.
+5. Confirm mobile/tablet/desktop layout behavior is smooth.
+6. Confirm home page no longer shows heading/subheading intro copy.
 
 ## Latest Commit Summary
 
@@ -104,3 +109,6 @@ Manual WordPress QA in LocalWP browser:
 - `style: increase Recipes Library logo sizing`
 - Pending commit: `feat: reorganize recipe home and manage workflows`
 - Pending commit: `feat: finalize home/manage split with private-only recipe flow`
+- Pending commit: `style: compact navbar and improve responsive breakpoints`
+- Pending commit: `style: apply shelf logo branding and navbar title text`
+- Pending commit: `style: finalize home hero removal and responsive sizing`
