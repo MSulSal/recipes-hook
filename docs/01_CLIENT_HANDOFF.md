@@ -28,6 +28,13 @@ Use the dedicated login page:
 The login page is a standalone form-only screen.
 When logged out, protected site routes redirect to `/login`.
 
+## Branding
+
+The site brand name is **Recipes Library** and includes a custom logo in:
+
+- The site navbar
+- The standalone login page
+
 ## Manage Recipes From the Site
 
 After login, the homepage includes a management panel where you can:

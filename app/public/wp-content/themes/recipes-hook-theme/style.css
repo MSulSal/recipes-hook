@@ -68,11 +68,20 @@ a:focus {
 }
 
 .rht-brand {
+	align-items: center;
 	color: var(--rht-ink);
+	display: inline-flex;
+	gap: 0.55rem;
 	font-size: 1.3rem;
 	font-weight: 800;
 	letter-spacing: 0.01em;
 	text-decoration: none;
+}
+
+.rht-brand__logo {
+	display: block;
+	height: 1.9rem;
+	width: 1.9rem;
 }
 
 .rht-nav {
@@ -318,6 +327,23 @@ a:focus {
 	margin: 0;
 	padding: 1rem;
 	width: min(100%, 28rem);
+}
+
+.rht-login-brand {
+	align-items: center;
+	color: var(--rht-ink);
+	display: inline-flex;
+	font-size: 1.35rem;
+	font-weight: 800;
+	gap: 0.55rem;
+	margin: 0 auto 0.95rem;
+	text-decoration: none;
+}
+
+.rht-login-brand__logo {
+	display: block;
+	height: 2.1rem;
+	width: 2.1rem;
 }
 
 .rht-auth-form--plain {

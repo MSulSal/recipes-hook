@@ -49,6 +49,16 @@ function rht_ensure_login_page_exists(): void {
 }
 add_action( 'init', 'rht_ensure_login_page_exists' );
 
+function rht_ensure_brand_defaults(): void {
+	if ( get_option( 'rht_brand_defaults_applied', false ) ) {
+		return;
+	}
+
+	update_option( 'blogname', 'Recipes Library' );
+	update_option( 'rht_brand_defaults_applied', 1, false );
+}
+add_action( 'init', 'rht_ensure_brand_defaults' );
+
 function rht_front_status_message( string $status ): string {
 	$map = array(
 		'created'      => __( 'Recipe created successfully.', 'recipes-hook-theme' ),

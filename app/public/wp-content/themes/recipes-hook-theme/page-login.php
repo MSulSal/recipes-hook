@@ -53,6 +53,10 @@ if ( 'POST' === $_SERVER['REQUEST_METHOD'] ) {
 <body <?php body_class( 'rht-login-page' ); ?>>
 <?php wp_body_open(); ?>
 <main class="rht-login-shell rht-login-shell--plain">
+	<a class="rht-login-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>">
+		<img class="rht-login-brand__logo" src="<?php echo esc_url( get_stylesheet_directory_uri() . '/assets/recipes-library-logo.svg' ); ?>" alt="<?php esc_attr_e( 'Recipes Library', 'recipes-hook-theme' ); ?>">
+		<span><?php esc_html_e( 'Recipes Library', 'recipes-hook-theme' ); ?></span>
+	</a>
 	<?php if ( '' !== $login_error ) : ?>
 		<div class="rht-alert">
 			<?php if ( 'missing_fields' === $login_error ) : ?>

@@ -14,7 +14,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 <?php wp_body_open(); ?>
 <header class="rht-site-header">
 	<div class="rht-site-header__inner">
-		<a class="rht-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php bloginfo( 'name' ); ?></a>
+		<a class="rht-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>">
+			<img class="rht-brand__logo" src="<?php echo esc_url( get_stylesheet_directory_uri() . '/assets/recipes-library-logo.svg' ); ?>" alt="<?php esc_attr_e( 'Recipes Library', 'recipes-hook-theme' ); ?>">
+			<span><?php bloginfo( 'name' ); ?></span>
+		</a>
 		<nav class="rht-nav">
 			<a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php esc_html_e( 'Recipes', 'recipes-hook-theme' ); ?></a>
 			<?php if ( get_post_type_archive_link( 'recipe_pdf' ) ) : ?>
