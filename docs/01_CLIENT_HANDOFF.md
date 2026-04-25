@@ -12,11 +12,15 @@ Use the admin username and password provided during handoff.
 
 ## Add a Recipe PDF
 
-After the plugin is active, go to **Recipes > Add New** in WordPress. Enter a recipe title and upload/select the recipe PDF in the recipe PDF box. You should not need FTP, GitHub, code editing, or anything outside WordPress admin to manage recipes.
+After the plugin is active, go to **Recipes > Add New** in WordPress. Enter a recipe title and use the **Recipe PDF** box to upload or select a PDF from the WordPress Media Library. The site will display this PDF as the recipe.
+
+You should not need FTP, GitHub, code editing, or anything outside WordPress admin to manage recipes.
 
 ## Title, Categories, and Tags
 
 Use a clear title such as "Spicy Pork Scissor Cut Noodles Full." Categories and tags are optional, but they help visitors browse and search.
+
+If you leave the title blank and choose a PDF, the site will try to create a title from the PDF filename. For example, `Spicy_Pork_Scissor_Cut_Noodles_Full.pdf` becomes "Spicy Pork Scissor Cut Noodles Full."
 
 ## View Recipes on the Site
 

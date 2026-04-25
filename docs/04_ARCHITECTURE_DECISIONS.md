@@ -18,7 +18,7 @@ PDF text extraction is useful for machine-readable PDFs but unreliable for scann
 
 ## Security Decisions
 
-The plugin will use nonces, capability checks, PDF MIME validation, sanitization, and escaping. Raw SQL will be avoided unless there is a clear reason.
+The plugin uses nonces, capability checks, PDF MIME validation, sanitization, and escaping for the PDF field. Raw SQL will be avoided unless there is a clear reason.
 
 ## Simplicity
 
