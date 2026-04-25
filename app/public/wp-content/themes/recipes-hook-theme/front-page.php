@@ -133,19 +133,39 @@ if ( ! $is_edit_valid ) {
 		</div>
 	</section>
 <?php else : ?>
-	<section class="rht-card rht-auth-card">
-		<h2><?php esc_html_e( 'Client Login', 'recipes-hook-theme' ); ?></h2>
-		<p><?php esc_html_e( 'Log in to add, edit, and delete recipe PDFs from this page.', 'recipes-hook-theme' ); ?></p>
-		<?php
-		wp_login_form(
-			array(
-				'redirect'       => home_url( '/' ),
-				'label_log_in'   => __( 'Log In', 'recipes-hook-theme' ),
-				'remember'       => true,
-				'value_remember' => true,
-			)
-		);
-		?>
+	<section class="rht-auth-shell">
+		<div class="rht-card rht-auth-card">
+			<div class="rht-auth-intro">
+				<p class="rht-auth-eyebrow"><?php esc_html_e( 'Private Workspace', 'recipes-hook-theme' ); ?></p>
+				<h2><?php esc_html_e( 'Client Login', 'recipes-hook-theme' ); ?></h2>
+				<p><?php esc_html_e( 'Sign in to manage recipe PDFs without opening wp-admin.', 'recipes-hook-theme' ); ?></p>
+				<ul class="rht-auth-points">
+					<li><?php esc_html_e( 'Publish new recipe PDFs', 'recipes-hook-theme' ); ?></li>
+					<li><?php esc_html_e( 'Edit title, tags, categories', 'recipes-hook-theme' ); ?></li>
+					<li><?php esc_html_e( 'Delete outdated recipes', 'recipes-hook-theme' ); ?></li>
+				</ul>
+			</div>
+			<div class="rht-auth-form-wrap">
+				<form class="rht-auth-form" name="loginform" action="<?php echo esc_url( wp_login_url() ); ?>" method="post">
+					<label for="user_login"><?php esc_html_e( 'Username or Email', 'recipes-hook-theme' ); ?></label>
+					<input type="text" name="log" id="user_login" autocomplete="username" required>
+
+					<label for="user_pass"><?php esc_html_e( 'Password', 'recipes-hook-theme' ); ?></label>
+					<input type="password" name="pwd" id="user_pass" autocomplete="current-password" required>
+
+					<label class="rht-inline-check">
+						<input type="checkbox" name="rememberme" value="forever">
+						<span><?php esc_html_e( 'Keep me signed in', 'recipes-hook-theme' ); ?></span>
+					</label>
+
+					<input type="hidden" name="redirect_to" value="<?php echo esc_url( home_url( '/' ) ); ?>">
+					<button type="submit" class="rht-auth-submit"><?php esc_html_e( 'Log In', 'recipes-hook-theme' ); ?></button>
+				</form>
+				<div class="rht-auth-links">
+					<a href="<?php echo esc_url( wp_lostpassword_url( home_url( '/' ) ) ); ?>"><?php esc_html_e( 'Forgot password?', 'recipes-hook-theme' ); ?></a>
+				</div>
+			</div>
+		</div>
 	</section>
 <?php endif; ?>
 

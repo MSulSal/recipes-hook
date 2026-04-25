@@ -30,6 +30,8 @@ If logged in, the homepage includes a management panel where you can:
 
 This is the primary workflow for everyday use. wp-admin remains available for advanced settings.
 
+Logged-out visitors now see a custom login panel on the homepage. Use that panel to sign in and access recipe management.
+
 ## Add a Recipe PDF
 
 After the plugin is active, go to **Recipes > Add New** in WordPress. Enter a recipe title and use the **Recipe PDF** box to upload or select a PDF from the WordPress Media Library. The site will display this PDF as the recipe.
