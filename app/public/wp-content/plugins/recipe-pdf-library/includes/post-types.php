@@ -32,9 +32,9 @@ function rpl_register_post_type(): void {
 	$args = array(
 		'labels'             => $labels,
 		'public'             => true,
-		'has_archive'        => true,
+		'has_archive'        => 'recipe-archive',
 		'menu_icon'          => 'dashicons-food',
-		'rewrite'            => array( 'slug' => 'recipes' ),
+		'rewrite'            => array( 'slug' => 'recipe' ),
 		'show_in_rest'       => true,
 		'supports'           => array( 'title', 'editor', 'thumbnail' ),
 		'taxonomies'         => array( 'recipe_category', 'recipe_tag' ),
@@ -103,4 +103,3 @@ function rpl_register_taxonomies(): void {
 		)
 	);
 }
-

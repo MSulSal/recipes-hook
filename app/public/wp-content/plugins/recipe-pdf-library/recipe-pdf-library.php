@@ -19,6 +19,7 @@ define( 'RPL_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 require_once RPL_PLUGIN_DIR . 'includes/post-types.php';
 require_once RPL_PLUGIN_DIR . 'includes/meta-boxes.php';
 require_once RPL_PLUGIN_DIR . 'includes/shortcodes.php';
+require_once RPL_PLUGIN_DIR . 'includes/detail-view.php';
 
 function rpl_activate(): void {
 	rpl_register_post_type();

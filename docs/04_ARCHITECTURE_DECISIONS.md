@@ -8,6 +8,8 @@ Recipe behavior belongs in a custom plugin so the client can change themes later
 
 Each recipe will be represented as a `recipe_pdf` post. This keeps recipes manageable in WordPress admin while allowing titles, categories, tags, archive pages, and single recipe pages.
 
+Recipe detail URLs use the singular `/recipe/` slug. The post type archive uses `/recipe-archive/` so a normal WordPress page titled **Recipes** can safely use the `/recipes/` URL for the shortcode library.
+
 ## Search
 
 Search begins with reliable WordPress data: title, PDF filename, categories, and tags. The shortcode loads published recipe posts and applies a simple PHP-side match, which is appropriate for this small client site and avoids fragile custom SQL. Optional PDF text extraction may be added only if it stays portable and fallback-safe.

@@ -203,9 +203,20 @@ function rpl_get_recipe_pdf_filename( int $post_id ): string {
 	return wp_basename( $file );
 }
 
+function rpl_get_recipe_pdf_url( int $post_id ): string {
+	$attachment_id = rpl_get_recipe_pdf_attachment_id( $post_id );
+
+	if ( ! $attachment_id || ! rpl_attachment_is_pdf( $attachment_id ) ) {
+		return '';
+	}
+
+	$url = wp_get_attachment_url( $attachment_id );
+
+	return $url ? $url : '';
+}
+
 function rpl_current_url(): string {
 	global $wp;
 
 	return home_url( add_query_arg( array(), $wp->request ) );
 }
-

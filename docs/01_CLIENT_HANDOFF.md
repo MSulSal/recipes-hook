@@ -30,6 +30,8 @@ The recipe library page will use this shortcode:
 
 Create a normal WordPress page titled **Recipes**, add the shortcode to the page content, and publish it. Visitors will see a search box, category filter, and recipe cards.
 
+Clicking **View Recipe** opens a recipe detail page with the PDF embedded in the browser when supported. Visitors can also open the PDF in a new tab or download it.
+
 ## Search
 
 Search matches recipe titles, PDF filenames, categories, and tags. If PDF text indexing is added, machine-readable PDF text may also be searchable.
@@ -41,6 +43,8 @@ If a PDF is a scanned image, WordPress may not be able to search the text inside
 ## Replace or Delete a PDF
 
 Edit the recipe in WordPress and choose a different PDF. To remove a recipe entirely, move the recipe to Trash.
+
+If a recipe detail page says the PDF is unavailable, edit the recipe in WordPress and select the PDF again from the **Recipe PDF** box.
 
 ## Add the Recipe Page to Navigation
 
