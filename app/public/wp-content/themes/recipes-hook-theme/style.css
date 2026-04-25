@@ -82,6 +82,7 @@ a:focus {
 	display: block;
 	height: 1.9rem;
 	width: 1.9rem;
+	object-fit: contain;
 }
 
 .rht-nav {
@@ -330,20 +331,18 @@ a:focus {
 }
 
 .rht-login-brand {
-	align-items: center;
-	color: var(--rht-ink);
-	display: inline-flex;
-	font-size: 1.35rem;
-	font-weight: 800;
-	gap: 0.55rem;
-	margin: 0 auto 0.95rem;
+	display: block;
+	height: auto;
+	margin: 0 auto 1.05rem;
 	text-decoration: none;
+	width: 5.25rem;
 }
 
 .rht-login-brand__logo {
 	display: block;
-	height: 2.1rem;
-	width: 2.1rem;
+	height: auto;
+	width: 100%;
+	object-fit: contain;
 }
 
 .rht-auth-form--plain {

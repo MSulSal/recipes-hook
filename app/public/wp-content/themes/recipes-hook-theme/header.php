@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <header class="rht-site-header">
 	<div class="rht-site-header__inner">
 		<a class="rht-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>">
-			<img class="rht-brand__logo" src="<?php echo esc_url( get_stylesheet_directory_uri() . '/assets/recipes-library-logo.svg' ); ?>" alt="<?php esc_attr_e( 'Recipes Library', 'recipes-hook-theme' ); ?>">
+			<img class="rht-brand__logo" src="<?php echo esc_url( get_stylesheet_directory_uri() . '/assets/rl_logo.png' ); ?>" alt="<?php esc_attr_e( 'Recipes Library', 'recipes-hook-theme' ); ?>">
 			<span><?php bloginfo( 'name' ); ?></span>
 		</a>
 		<nav class="rht-nav">
