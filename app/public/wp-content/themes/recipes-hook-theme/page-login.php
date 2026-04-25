@@ -14,6 +14,35 @@ if ( isset( $_GET['redirect_to'] ) ) {
 		$redirect_target = $candidate;
 	}
 }
+
+if ( 'POST' === $_SERVER['REQUEST_METHOD'] ) {
+	$nonce_valid = isset( $_POST['rht_login_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['rht_login_nonce'] ) ), 'rht_front_login' );
+	$username    = isset( $_POST['log'] ) ? sanitize_text_field( wp_unslash( $_POST['log'] ) ) : '';
+	$password    = isset( $_POST['pwd'] ) ? (string) wp_unslash( $_POST['pwd'] ) : '';
+	$remember    = ! empty( $_POST['rememberme'] );
+
+	if ( ! $nonce_valid ) {
+		$login_error = 'invalid_request';
+	} elseif ( '' === $username || '' === $password ) {
+		$login_error = 'missing_fields';
+	} else {
+		$user = wp_signon(
+			array(
+				'user_login'    => $username,
+				'user_password' => $password,
+				'remember'      => $remember,
+			),
+			is_ssl()
+		);
+
+		if ( is_wp_error( $user ) ) {
+			$login_error = 'invalid_credentials';
+		} else {
+			wp_safe_redirect( $redirect_target );
+			exit;
+		}
+	}
+}
 ?><!doctype html>
 <html <?php language_attributes(); ?>>
 <head>
@@ -35,8 +64,7 @@ if ( isset( $_GET['redirect_to'] ) ) {
 			<?php endif; ?>
 		</div>
 	<?php endif; ?>
-	<form class="rht-auth-form rht-auth-form--plain" name="loginform" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" method="post">
-		<input type="hidden" name="action" value="rht_front_login">
+	<form class="rht-auth-form rht-auth-form--plain" name="loginform" action="<?php echo esc_url( home_url( '/login/' ) ); ?>" method="post">
 		<?php wp_nonce_field( 'rht_front_login', 'rht_login_nonce' ); ?>
 		<label for="user_login"><?php esc_html_e( 'Username or Email', 'recipes-hook-theme' ); ?></label>
 		<input type="text" name="log" id="user_login" autocomplete="username" required>
