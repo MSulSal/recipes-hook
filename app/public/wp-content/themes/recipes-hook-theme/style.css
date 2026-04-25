@@ -72,17 +72,14 @@ a:focus {
 	align-items: center;
 	color: var(--rht-ink);
 	display: inline-flex;
-	gap: 0.55rem;
-	font-size: 1.58rem;
-	font-weight: 800;
-	letter-spacing: 0.01em;
+	gap: 0;
 	text-decoration: none;
 }
 
 .rht-brand__logo {
 	display: block;
-	height: 4.4rem;
-	width: 4.4rem;
+	height: auto;
+	width: 18rem;
 	object-fit: contain;
 }
 
@@ -332,7 +329,7 @@ a:focus {
 .rht-login-brand {
 	display: block;
 	height: auto;
-	margin: 0 auto 1.25rem;
+	margin: 0 auto 0.55rem;
 	text-decoration: none;
 	width: 15rem;
 }
@@ -933,6 +930,10 @@ a:focus {
 	.rht-site-header__inner {
 		flex-direction: column;
 		gap: 0.55rem;
+	}
+
+	.rht-brand__logo {
+		width: min(84vw, 16rem);
 	}
 
 	.rht-manage-grid {
