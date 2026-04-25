@@ -119,9 +119,8 @@ function rpl_render_recipe_library_shortcode( array $atts = array() ): string {
 }
 
 function rpl_get_library_recipes( string $category_slug ): array {
-	$args = array(
+	$base_args = array(
 		'post_type'              => 'recipe_pdf',
-		'post_status'            => is_user_logged_in() ? array( 'private', 'publish' ) : array( 'publish' ),
 		'posts_per_page'         => 100,
 		'orderby'                => 'title',
 		'order'                  => 'ASC',
@@ -130,12 +129,8 @@ function rpl_get_library_recipes( string $category_slug ): array {
 		'update_post_term_cache' => true,
 	);
 
-	if ( is_user_logged_in() ) {
-		$args['author'] = get_current_user_id();
-	}
-
 	if ( $category_slug ) {
-		$args['tax_query'] = array(
+		$base_args['tax_query'] = array(
 			array(
 				'taxonomy' => 'recipe_category',
 				'field'    => 'slug',
@@ -144,7 +139,38 @@ function rpl_get_library_recipes( string $category_slug ): array {
 		);
 	}
 
-	return get_posts( $args );
+	if ( ! is_user_logged_in() ) {
+		$public_args                = $base_args;
+		$public_args['post_status'] = array( 'publish' );
+
+		return get_posts( $public_args );
+	}
+
+	$public_args                = $base_args;
+	$public_args['post_status'] = array( 'publish' );
+
+	$private_args                = $base_args;
+	$private_args['post_status'] = array( 'private' );
+	$private_args['author']      = get_current_user_id();
+
+	$public_recipes  = get_posts( $public_args );
+	$private_recipes = get_posts( $private_args );
+	$merged          = array();
+
+	foreach ( array_merge( $public_recipes, $private_recipes ) as $recipe ) {
+		$merged[ (int) $recipe->ID ] = $recipe;
+	}
+
+	$recipes = array_values( $merged );
+
+	usort(
+		$recipes,
+		static function ( WP_Post $a, WP_Post $b ): int {
+			return strnatcasecmp( $a->post_title, $b->post_title );
+		}
+	);
+
+	return $recipes;
 }
 
 function rpl_filter_recipes_by_search( array $recipes, string $search ): array {

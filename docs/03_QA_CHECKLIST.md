@@ -33,6 +33,7 @@ Record results here as features are built.
 - Signed-out home shows public recipes only: Ready for manual test
 - Recipe visibility toggle (Public/Private): Ready for manual test
 - Visibility badge on recipe cards: Ready for manual test
+- Signed-in users can see global public recipes: Ready for manual test
 
 ## Manual QA Notes
 

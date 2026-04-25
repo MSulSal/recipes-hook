@@ -46,6 +46,7 @@ This is a small WordPress recipe PDF library for an Upwork client job titled "Re
 - Commit 21 in progress: remove home subheadings and apply final sizing pass.
 - Commit 22 in progress: add public recipe browsing for signed-out users and visibility badges.
 - Commit 23 in progress: ignore local All-in-One migration backup artifacts.
+- Commit 24 in progress: include global public recipes for signed-in users.
 - Site structure now:
   - Home (`/`): searchable recipe library with Gallery/List toggle (signed-in: own recipes, signed-out: public recipes only)
   - Manage Recipes (`/manage-recipes/`): add/edit/delete UI
@@ -90,6 +91,7 @@ Manual WordPress QA in LocalWP browser:
 5. Confirm mobile/tablet/desktop layout behavior is smooth.
 6. Confirm home page no longer shows heading/subheading intro copy.
 7. Confirm visibility toggle and Public/Private badges are working.
+8. Confirm signed-in users can see public recipes from other accounts.
 
 ## Latest Commit Summary
 
@@ -117,3 +119,4 @@ Manual WordPress QA in LocalWP browser:
 - Pending commit: `style: finalize home hero removal and responsive sizing`
 - Pending commit: `feat: add public recipe browsing and visibility badges`
 - Pending commit: `chore: ignore local migration backup artifacts`
+- Pending commit: `fix: include public recipes in signed-in library view`
