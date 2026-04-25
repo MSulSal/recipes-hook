@@ -19,6 +19,17 @@ All routine recipe work happens in WordPress admin. You do not need GitHub, FTP,
 
 This setup keeps visuals in the theme and recipe behavior in the plugin.
 
+## Manage Recipes From the Site
+
+If logged in, the homepage includes a management panel where you can:
+
+- Add a recipe with PDF upload
+- Edit title, tags, categories, and notes
+- Replace or remove the current PDF
+- Delete a recipe (moves to Trash)
+
+This is the primary workflow for everyday use. wp-admin remains available for advanced settings.
+
 ## Add a Recipe PDF
 
 After the plugin is active, go to **Recipes > Add New** in WordPress. Enter a recipe title and use the **Recipe PDF** box to upload or select a PDF from the WordPress Media Library. The site will display this PDF as the recipe.

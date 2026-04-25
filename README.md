@@ -34,6 +34,7 @@ The plugin handles business logic:
 - Recipe post type/taxonomies
 - PDF upload and validation
 - Search behavior and PDF text indexing
+- Frontend authenticated create/edit/delete actions
 
 ## Handoff Notes
 

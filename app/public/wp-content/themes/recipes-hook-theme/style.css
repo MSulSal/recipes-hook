@@ -9,14 +9,15 @@ Text Domain: recipes-hook-theme
 */
 
 :root {
-	--rht-bg: #f7f2ea;
-	--rht-surface: #fffaf4;
+	--rht-bg: #efe3d3;
+	--rht-surface: #fff6ea;
 	--rht-surface-alt: #ffffff;
 	--rht-border: #ded7ce;
 	--rht-ink: #24211d;
 	--rht-muted: #6d665e;
 	--rht-accent: #8b3f2b;
 	--rht-accent-dark: #6f2e1e;
+	--rht-shadow: 0 12px 30px rgba(68, 44, 24, 0.12);
 }
 
 *,
@@ -26,9 +27,9 @@ Text Domain: recipes-hook-theme
 }
 
 body {
-	background: linear-gradient(180deg, #fcf7f0 0%, var(--rht-bg) 100%);
+	background: radial-gradient(circle at top right, #ffe8cb 0%, transparent 40%), linear-gradient(180deg, #fffaf4 0%, var(--rht-bg) 100%);
 	color: var(--rht-ink);
-	font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+	font-family: "Segoe UI Variable", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
 	margin: 0;
 }
 
@@ -42,7 +43,8 @@ a:focus {
 }
 
 .rht-site-header {
-	background: var(--rht-surface-alt);
+	backdrop-filter: blur(10px);
+	background: rgba(255, 255, 255, 0.9);
 	border-bottom: 1px solid var(--rht-border);
 	position: sticky;
 	top: 0;
@@ -100,7 +102,168 @@ a:focus {
 	background: var(--rht-surface-alt);
 	border: 1px solid var(--rht-border);
 	border-radius: 10px;
+	box-shadow: var(--rht-shadow);
 	padding: 1rem;
+}
+
+.rht-alert {
+	background: #fff8e5;
+	border-color: #f0d18f;
+	color: #6a4b11;
+	font-weight: 700;
+	margin-bottom: 1rem;
+}
+
+.rht-manage-grid {
+	display: grid;
+	gap: 1rem;
+	grid-template-columns: minmax(18rem, 1.2fr) minmax(14rem, 1fr);
+	margin-bottom: 1.5rem;
+}
+
+.rht-manage-form h2,
+.rht-manage-list h2,
+.rht-auth-card h2 {
+	font-size: 1.3rem;
+	margin: 0 0 0.35rem;
+}
+
+.rht-manage-form p,
+.rht-manage-list p,
+.rht-auth-card p {
+	color: var(--rht-muted);
+	margin: 0 0 0.85rem;
+}
+
+.rht-manage-form form {
+	display: grid;
+	gap: 0.65rem;
+}
+
+.rht-manage-form label,
+.rht-manage-form legend {
+	font-size: 0.87rem;
+	font-weight: 700;
+}
+
+.rht-manage-form input[type="text"],
+.rht-manage-form input[type="file"],
+.rht-manage-form textarea {
+	border: 1px solid var(--rht-border);
+	border-radius: 8px;
+	font: inherit;
+	min-height: 2.6rem;
+	padding: 0.65rem 0.75rem;
+	width: 100%;
+}
+
+.rht-manage-form textarea {
+	min-height: 7rem;
+	resize: vertical;
+}
+
+.rht-manage-form input:focus,
+.rht-manage-form textarea:focus {
+	border-color: var(--rht-accent);
+	box-shadow: 0 0 0 2px rgba(139, 63, 43, 0.15);
+	outline: none;
+}
+
+.rht-category-set {
+	border: 1px dashed var(--rht-border);
+	border-radius: 8px;
+	margin: 0;
+	padding: 0.6rem 0.75rem;
+}
+
+.rht-inline-check {
+	align-items: center;
+	display: flex;
+	gap: 0.5rem;
+	margin: 0.3rem 0;
+}
+
+.rht-form-actions {
+	align-items: center;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.7rem;
+}
+
+.rht-manage-items {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.rht-manage-items li {
+	align-items: center;
+	background: #fff;
+	border: 1px solid var(--rht-border);
+	border-radius: 8px;
+	display: flex;
+	gap: 0.75rem;
+	justify-content: space-between;
+	margin-bottom: 0.65rem;
+	padding: 0.75rem;
+}
+
+.rht-manage-items li span {
+	color: var(--rht-muted);
+	display: block;
+	font-size: 0.85rem;
+	margin-top: 0.2rem;
+}
+
+.rht-manage-actions {
+	align-items: center;
+	display: flex;
+	gap: 0.55rem;
+}
+
+.rht-manage-actions form {
+	margin: 0;
+}
+
+.rht-delete-btn {
+	background: transparent;
+	border: 0;
+	color: #8a2b23;
+	cursor: pointer;
+	font-size: 0.9rem;
+	font-weight: 700;
+	padding: 0;
+}
+
+.rht-delete-btn:hover,
+.rht-delete-btn:focus {
+	color: #6c1813;
+	text-decoration: underline;
+}
+
+.rht-auth-card .login-username,
+.rht-auth-card .login-password,
+.rht-auth-card .login-remember {
+	display: grid;
+	gap: 0.35rem;
+	margin: 0 0 0.7rem;
+}
+
+.rht-auth-card input[type="text"],
+.rht-auth-card input[type="password"] {
+	border: 1px solid var(--rht-border);
+	border-radius: 8px;
+	min-height: 2.6rem;
+	padding: 0.65rem 0.75rem;
+	width: 100%;
+}
+
+.rht-auth-card .button-primary {
+	background: var(--rht-accent);
+	border: 1px solid var(--rht-accent);
+	border-radius: 8px;
+	box-shadow: none;
+	text-shadow: none;
 }
 
 .rpl-library {
@@ -438,6 +601,15 @@ a:focus {
 	.rpl-search-form {
 		grid-template-columns: 1fr;
 		padding: 0.85rem;
+	}
+
+	.rht-manage-grid {
+		grid-template-columns: 1fr;
+	}
+
+	.rht-manage-items li {
+		align-items: flex-start;
+		flex-direction: column;
 	}
 
 	.rpl-search-button,

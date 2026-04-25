@@ -19,6 +19,10 @@ The custom plugin can also be zipped from:
 
 Install it on another WordPress site through **Plugins > Add New > Upload Plugin**.
 
+The custom theme should also be migrated:
+
+`app/public/wp-content/themes/recipes-hook-theme/`
+
 This is important for hosts with small import limits, such as 60 MB. If a full-site import is too large, move the database/content with a migration tool and upload the custom plugin separately as a zip. Uploaded recipe PDFs live in the WordPress media library and may need to be moved separately by the migration tool or uploaded again in WordPress admin.
 
 ## Migration Plugin Option

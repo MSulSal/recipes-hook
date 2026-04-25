@@ -20,3 +20,15 @@ function rht_enqueue_styles(): void {
 }
 add_action( 'wp_enqueue_scripts', 'rht_enqueue_styles' );
 
+function rht_front_status_message( string $status ): string {
+	$map = array(
+		'created'      => __( 'Recipe created successfully.', 'recipes-hook-theme' ),
+		'updated'      => __( 'Recipe updated successfully.', 'recipes-hook-theme' ),
+		'deleted'      => __( 'Recipe deleted.', 'recipes-hook-theme' ),
+		'upload_error' => __( 'PDF upload failed. Please try again with a valid PDF file.', 'recipes-hook-theme' ),
+		'save_error'   => __( 'Recipe could not be saved. Please try again.', 'recipes-hook-theme' ),
+		'forbidden'    => __( 'You do not have permission for that action.', 'recipes-hook-theme' ),
+	);
+
+	return isset( $map[ $status ] ) ? $map[ $status ] : '';
+}

@@ -22,9 +22,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<?php endif; ?>
 			<?php if ( is_user_logged_in() ) : ?>
 				<a href="<?php echo esc_url( admin_url( 'edit.php?post_type=recipe_pdf' ) ); ?>"><?php esc_html_e( 'Manage Recipes', 'recipes-hook-theme' ); ?></a>
+				<a href="<?php echo esc_url( wp_logout_url( home_url( '/' ) ) ); ?>"><?php esc_html_e( 'Log Out', 'recipes-hook-theme' ); ?></a>
+			<?php else : ?>
+				<a href="<?php echo esc_url( wp_login_url( home_url( '/' ) ) ); ?>"><?php esc_html_e( 'Log In', 'recipes-hook-theme' ); ?></a>
 			<?php endif; ?>
 		</nav>
 	</div>
 </header>
 <main class="rht-page-shell">
-

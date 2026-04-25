@@ -9,7 +9,7 @@ This is a small WordPress recipe PDF library for an Upwork client job titled "Re
 - LocalWP project root: `C:\Users\Sul\Local Sites\reciperepo`
 - WordPress root: `app/public`
 - Custom plugin path: `app/public/wp-content/plugins/recipe-pdf-library/`
-- The active theme is expected to remain a normal WordPress theme; recipe functionality belongs in the plugin.
+- Custom theme path: `app/public/wp-content/themes/recipes-hook-theme/`
 
 ## Git/Repo Status
 
@@ -31,9 +31,10 @@ This is a small WordPress recipe PDF library for an Upwork client job titled "Re
 - Commit 6 complete: fallback-safe PDF text indexing added with no Composer dependency. It stores extracted text in hidden post meta and keeps title/filename/category/tag search as the reliable baseline.
 - Commit 7 complete: shortcode and detail page CSS polished for a cleaner responsive demo.
 - Commit 8 complete: final documentation and proposal notes.
-- Commit 9 in progress: UI-first polish pass on library and detail view markup/CSS for demo readiness.
-- Commit 10 in progress: move presentation logic into custom theme and keep business logic in plugin.
-- The client workflow remains inside WordPress admin.
+- Commit 9 complete: UI-first polish pass on library and detail view markup/CSS.
+- Commit 10 complete: presentation moved to custom theme and business logic kept in plugin.
+- Commit 11 in progress: authenticated frontend recipe create/edit/delete UI and action handlers.
+- Client can manage recipes from the site UI after login, with wp-admin still available.
 
 ## Commands Run
 
@@ -50,9 +51,10 @@ This is a small WordPress recipe PDF library for an Upwork client job titled "Re
 - Git repo is rooted at the LocalWP project folder, not `app/public`, so top-level docs can be tracked cleanly.
 - Recipe functionality will be implemented as a portable custom plugin.
 - WordPress core and generated/local files will not be committed.
-- Client recipe management should happen entirely through WordPress admin.
+- Theme owns visual presentation and layout.
+- Plugin owns recipe business logic and secure CRUD handlers.
 - Keep plugin portable so it can be zipped/uploaded separately if a host has a 60 MB import limit.
-- PDF uploads use the WordPress Media Library from wp-admin, so the client does not need FTP or code access.
+- Client does not need FTP or code access.
 
 ## Known Issues
 
@@ -60,7 +62,7 @@ This is a small WordPress recipe PDF library for an Upwork client job titled "Re
 
 ## Next Recommended Step
 
-Manual WordPress QA: activate plugin, create the Recipes page with `[recipe_pdf_library]`, upload the sample PDF, publish a recipe, and test search/view/download/mobile.
+Manual WordPress QA: activate plugin/theme, log in via site UI, add/edit/delete recipe PDFs from frontend panel, then verify public search/view/download flows.
 
 ## Latest Commit Summary
 
@@ -72,5 +74,6 @@ Manual WordPress QA: activate plugin, create the Recipes page with `[recipe_pdf_
 - `feat: index PDF text for recipe search`
 - `style: polish recipe library layout for client demo`
 - `docs: finalize client handoff and proposal notes`
-- Pending commit: `style: refine recipe library ui and detail experience`
-- Pending commit: `feat: add custom theme and move recipe presentation out of plugin`
+- `style: refine recipe library ui and detail experience`
+- `feat: add custom theme and move recipe presentation out of plugin`
+- Pending commit: `feat: add authenticated frontend recipe management ui`

@@ -7,7 +7,7 @@ Recipe behavior belongs in a custom plugin so the client can change themes later
 ## Theme and Plugin Separation
 
 The `recipes-hook-theme` theme owns presentation: front page layout, archive/single templates, and styling.
-The `recipe-pdf-library` plugin owns business behavior: data model, PDF attachment handling, indexing, and search rules.
+The `recipe-pdf-library` plugin owns business behavior: data model, PDF attachment handling, indexing, search rules, and frontend CRUD action handlers.
 
 ## Custom Post Type for Recipe PDFs
 

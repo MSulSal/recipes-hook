@@ -3,7 +3,9 @@
 Record results here as features are built.
 
 - Add recipe PDF: Ready for manual test in wp-admin
+- Add recipe PDF: Ready for manual test in frontend and wp-admin
 - Edit recipe title: Pending
+- Edit recipe title: Ready for manual test in frontend
 - Add category/tag: Pending
 - Search by title: Ready for manual test on shortcode page
 - Search by filename: Ready for manual test on shortcode page
@@ -11,11 +13,13 @@ Record results here as features are built.
 - Search by PDF text if implemented: Ready for manual test with a machine-readable PDF
 - View PDF detail page: Ready for manual test
 - Download PDF: Ready for manual test
+- Download PDF: Ready for manual test
 - Mobile layout: Ready for manual test
 - Empty state: Ready for manual test on shortcode page
 - No-results state: Ready for manual test on shortcode page
 - Bad upload / non-PDF protection: Ready for manual test in wp-admin
 - Client handoff check: Pending
+- Client handoff check: Ready for final pass
 
 ## Manual QA Notes
 
@@ -33,5 +37,7 @@ Record results here as features are built.
 
 1. Activate **Recipes Hook Theme** in **Appearance > Themes**.
 2. Activate **Recipe PDF Library** in **Plugins**.
-3. Go to **Recipes > Add New** and upload `Spicy_Pork_Scissor_Cut_Noodles_Full.pdf`.
-4. Publish the recipe and confirm the title/category/tag/search/detail/download workflows.
+3. Log in on the homepage and add a recipe with `Spicy_Pork_Scissor_Cut_Noodles_Full.pdf`.
+4. Edit the same recipe from the homepage management panel.
+5. Delete a test recipe from the homepage management panel.
+6. Confirm title/category/tag/search/detail/download workflows.
