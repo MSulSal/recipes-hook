@@ -5,8 +5,8 @@ $status        = isset( $_GET['rpl_status'] ) ? sanitize_key( wp_unslash( $_GET[
 $editing_id    = isset( $_GET['rpl_edit'] ) ? absint( $_GET['rpl_edit'] ) : 0;
 $editing_post  = $editing_id ? get_post( $editing_id ) : null;
 $is_logged_in  = is_user_logged_in();
-$can_manage    = $is_logged_in && current_user_can( 'edit_posts' );
-$is_edit_valid = $editing_post instanceof WP_Post && 'recipe_pdf' === $editing_post->post_type && current_user_can( 'edit_post', $editing_post->ID );
+$can_manage    = $is_logged_in;
+$is_edit_valid = $editing_post instanceof WP_Post && 'recipe_pdf' === $editing_post->post_type && (int) $editing_post->post_author === get_current_user_id();
 
 if ( ! $is_edit_valid ) {
 	$editing_post = null;
@@ -47,7 +47,7 @@ if ( ! $is_edit_valid ) {
 		$current_tags       = implode( ', ', wp_get_post_terms( $editing_post->ID, 'recipe_tag', array( 'fields' => 'names' ) ) );
 	}
 	?>
-	<section class="rht-manage-grid">
+	<section class="rht-manage-grid" id="manage-recipes">
 		<div class="rht-manage-form">
 			<h2><?php echo esc_html( $editing_post ? __( 'Edit Recipe', 'recipes-hook-theme' ) : __( 'Add Recipe', 'recipes-hook-theme' ) ); ?></h2>
 			<p><?php esc_html_e( 'Upload a PDF and publish directly from the site.', 'recipes-hook-theme' ); ?></p>
@@ -116,32 +116,19 @@ if ( ! $is_edit_valid ) {
 								<strong><?php echo esc_html( get_the_title( $recipe_item ) ); ?></strong>
 								<span><?php echo esc_html( get_the_date( get_option( 'date_format' ), $recipe_item ) ); ?></span>
 							</div>
-							<?php if ( current_user_can( 'edit_post', $recipe_item->ID ) ) : ?>
-								<div class="rht-manage-actions">
-									<a class="rpl-secondary-link" href="<?php echo esc_url( add_query_arg( 'rpl_edit', (string) $recipe_item->ID, home_url( '/' ) ) ); ?>"><?php esc_html_e( 'Edit', 'recipes-hook-theme' ); ?></a>
-									<?php if ( current_user_can( 'delete_post', $recipe_item->ID ) ) : ?>
-										<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
-											<input type="hidden" name="action" value="rpl_frontend_delete_recipe">
-											<input type="hidden" name="rpl_recipe_id" value="<?php echo esc_attr( (string) $recipe_item->ID ); ?>">
-											<?php wp_nonce_field( 'rpl_frontend_delete_recipe' ); ?>
-											<button class="rht-delete-btn" type="submit" onclick="return confirm('<?php echo esc_js( __( 'Move this recipe to Trash?', 'recipes-hook-theme' ) ); ?>');"><?php esc_html_e( 'Delete', 'recipes-hook-theme' ); ?></button>
-										</form>
-									<?php endif; ?>
-								</div>
-							<?php endif; ?>
+							<div class="rht-manage-actions">
+								<a class="rpl-secondary-link" href="<?php echo esc_url( add_query_arg( 'rpl_edit', (string) $recipe_item->ID, home_url( '/' ) ) ); ?>"><?php esc_html_e( 'Edit', 'recipes-hook-theme' ); ?></a>
+								<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
+									<input type="hidden" name="action" value="rpl_frontend_delete_recipe">
+									<input type="hidden" name="rpl_recipe_id" value="<?php echo esc_attr( (string) $recipe_item->ID ); ?>">
+									<?php wp_nonce_field( 'rpl_frontend_delete_recipe' ); ?>
+									<button class="rht-delete-btn" type="submit" onclick="return confirm('<?php echo esc_js( __( 'Move this recipe to Trash?', 'recipes-hook-theme' ) ); ?>');"><?php esc_html_e( 'Delete', 'recipes-hook-theme' ); ?></button>
+								</form>
+							</div>
 						</li>
 					<?php endforeach; ?>
 				</ul>
 			<?php endif; ?>
-		</div>
-	</section>
-<?php elseif ( $is_logged_in ) : ?>
-	<section class="rht-auth-shell">
-		<div class="rht-auth-cta">
-			<p class="rht-auth-eyebrow"><?php esc_html_e( 'Account Permission', 'recipes-hook-theme' ); ?></p>
-			<h2><?php esc_html_e( 'Your account is read-only for recipe management', 'recipes-hook-theme' ); ?></h2>
-			<p><?php esc_html_e( 'You are signed in, but this account cannot add, edit, or delete recipes. Ask an admin for Editor access.', 'recipes-hook-theme' ); ?></p>
-			<p><a class="rpl-secondary-link" href="<?php echo esc_url( admin_url( 'profile.php' ) ); ?>"><?php esc_html_e( 'View My Account', 'recipes-hook-theme' ); ?></a></p>
 		</div>
 	</section>
 <?php else : ?>

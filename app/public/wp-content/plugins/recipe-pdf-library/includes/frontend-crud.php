@@ -18,7 +18,7 @@ add_action( 'admin_post_nopriv_rpl_frontend_update_recipe', 'rpl_frontend_requir
 add_action( 'admin_post_nopriv_rpl_frontend_delete_recipe', 'rpl_frontend_require_login' );
 
 function rpl_handle_frontend_create_recipe(): void {
-	if ( ! is_user_logged_in() || ! current_user_can( 'edit_posts' ) ) {
+	if ( ! is_user_logged_in() ) {
 		rpl_frontend_redirect_with_status( 'forbidden' );
 	}
 
@@ -79,7 +79,7 @@ function rpl_handle_frontend_create_recipe(): void {
 add_action( 'admin_post_rpl_frontend_create_recipe', 'rpl_handle_frontend_create_recipe' );
 
 function rpl_handle_frontend_update_recipe(): void {
-	if ( ! is_user_logged_in() || ! current_user_can( 'edit_posts' ) ) {
+	if ( ! is_user_logged_in() ) {
 		rpl_frontend_redirect_with_status( 'forbidden' );
 	}
 
@@ -87,7 +87,7 @@ function rpl_handle_frontend_update_recipe(): void {
 
 	$post_id = isset( $_POST['rpl_recipe_id'] ) ? absint( $_POST['rpl_recipe_id'] ) : 0;
 
-	if ( ! $post_id || 'recipe_pdf' !== get_post_type( $post_id ) || ! current_user_can( 'edit_post', $post_id ) ) {
+	if ( ! $post_id || 'recipe_pdf' !== get_post_type( $post_id ) ) {
 		rpl_frontend_redirect_with_status( 'forbidden' );
 	}
 
@@ -147,7 +147,7 @@ function rpl_handle_frontend_update_recipe(): void {
 add_action( 'admin_post_rpl_frontend_update_recipe', 'rpl_handle_frontend_update_recipe' );
 
 function rpl_handle_frontend_delete_recipe(): void {
-	if ( ! is_user_logged_in() || ! current_user_can( 'delete_posts' ) ) {
+	if ( ! is_user_logged_in() ) {
 		rpl_frontend_redirect_with_status( 'forbidden' );
 	}
 
@@ -155,7 +155,7 @@ function rpl_handle_frontend_delete_recipe(): void {
 
 	$post_id = isset( $_POST['rpl_recipe_id'] ) ? absint( $_POST['rpl_recipe_id'] ) : 0;
 
-	if ( ! $post_id || 'recipe_pdf' !== get_post_type( $post_id ) || ! current_user_can( 'delete_post', $post_id ) ) {
+	if ( ! $post_id || 'recipe_pdf' !== get_post_type( $post_id ) ) {
 		rpl_frontend_redirect_with_status( 'forbidden' );
 	}
 
