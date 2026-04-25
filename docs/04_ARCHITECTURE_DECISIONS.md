@@ -6,7 +6,7 @@ Recipe behavior belongs in a custom plugin so the client can change themes later
 
 ## Theme and Plugin Separation
 
-The `recipes-hook-theme` theme owns presentation: front page layout, archive/single templates, and styling.
+The `recipes-hook-theme` theme owns presentation: home library layout, manage page layout, login page styling, and single templates.
 The `recipe-pdf-library` plugin owns business behavior: data model, PDF attachment handling, indexing, search rules, and frontend CRUD action handlers.
 
 ## User Collections
@@ -17,11 +17,11 @@ The recipe library is account-scoped. Logged-in users query only their own recip
 
 Each recipe will be represented as a `recipe_pdf` post. This keeps recipes manageable in WordPress admin while allowing titles, categories, tags, archive pages, and single recipe pages.
 
-Recipe detail URLs use the singular `/recipe/` slug. The post type archive uses `/recipe-archive/` so a normal WordPress page titled **Recipes** can safely use the `/recipes/` URL for the shortcode library.
+Recipe detail URLs use the singular `/recipe/` slug. The post type archive route exists (`/recipe-archive/`) but is redirected to home because this project uses a custom home library experience instead of archive navigation.
 
 ## Search
 
-Search begins with reliable WordPress data: title, PDF filename, categories, and tags. The shortcode loads published recipe posts and applies a simple PHP-side match, which is appropriate for this small client site and avoids fragile custom SQL. Optional PDF text extraction may be added only if it stays portable and fallback-safe.
+Search begins with reliable WordPress data: title, PDF filename, categories, and tags. The shortcode loads private recipe posts for the logged-in account and applies a simple PHP-side match, which is appropriate for this small client site and avoids fragile custom SQL. Optional PDF text extraction may be added only if it stays portable and fallback-safe.
 
 ## PDF Text Extraction Tradeoffs
 
@@ -37,7 +37,7 @@ The client has a small budget and asked for a straightforward recipe website. Th
 
 ## WordPress Admin Ownership
 
-The client should be able to do all routine work from WordPress admin: upload PDFs, title recipes, set categories/tags, publish/unpublish, replace files, manage pages, and update navigation. GitHub and code are for development/handoff only.
+The client should be able to do all routine work from WordPress admin: upload PDFs, title recipes, set categories/tags, replace files, manage pages, and update navigation. GitHub and code are for development/handoff only.
 
 ## 60 MB Import Limit
 
@@ -45,7 +45,7 @@ The custom behavior is isolated in a plugin so it can be uploaded separately if 
 
 ## Styling
 
-Frontend CSS is scoped under `rpl-` classes and loaded by the plugin only where the shortcode/detail view needs it. No theme files or external CDNs are required.
+Frontend CSS is scoped under `rpl-`/`rht-` classes in the custom theme and does not use external CDNs. Home supports both gallery and list views with PDF preview thumbnails where WordPress can generate them.
 
 ## Migration Strategy
 

@@ -37,7 +37,11 @@ The site brand name is **Recipes Library** and includes a custom logo in:
 
 ## Manage Recipes From the Site
 
-After login, the homepage includes a management panel where you can:
+After login, go to:
+
+`/manage-recipes/`
+
+This page is where you can:
 
 - Add a recipe with PDF upload
 - Edit title, tags, categories, and notes
@@ -46,8 +50,7 @@ After login, the homepage includes a management panel where you can:
 
 This is the primary workflow for everyday use. wp-admin remains available for advanced settings.
 
-Logged-out visitors see a homepage prompt that links to `/login`.
-Each user account has its own recipe collection. Users only see and manage their own recipes on the site.
+Logged-out visitors are redirected to `/login` for protected pages.
 
 ## Add a Recipe PDF
 
@@ -67,11 +70,19 @@ The recipe library page will use this shortcode:
 
 `[recipe_pdf_library]`
 
-Create a normal WordPress page titled **Recipes**, add the shortcode to the page content, and publish it. Visitors will see a search box, category filter, and recipe cards.
+The home page is the main recipe library and shows:
+
+- Search box
+- Category filter
+- Gallery/List view toggle
+- Recipe thumbnails (PDF preview image when available)
+- Recipe cards/list rows
+
+You can still place `[recipe_pdf_library]` on any other page if needed.
 
 Clicking **View Recipe** opens a recipe detail page with the PDF embedded in the browser when supported. Visitors can also open the PDF in a new tab or download it.
 
-The library page shows active search/category filters and a result count so it is easy to confirm what is being filtered.
+The library shows active search/category filters and a result count so it is easy to confirm what is being filtered.
 
 ## Search
 

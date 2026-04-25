@@ -35,11 +35,18 @@ This is a small WordPress recipe PDF library for an Upwork client job titled "Re
 - Commit 10 complete: presentation moved to custom theme and business logic kept in plugin.
 - Commit 11 complete: authenticated frontend recipe create/edit/delete UI and action handlers.
 - Commit 12 complete: polished frontend login panel with custom styled auth form.
-- Commit 13 in progress: enforce per-user recipe collections, move login form to dedicated `/login` page, and keep login page form-only (no navbar).
-- Commit 14 in progress: enforce login redirect gate for protected frontend routes and honor `redirect_to` on `/login`.
+- Commit 13 complete: enforce per-user recipe collections, move login form to dedicated `/login` page, and keep login page form-only (no navbar).
 - Commit 14 complete: enforce login redirect gate for protected frontend routes and honor `redirect_to` on `/login`.
-- Commit 15 in progress: set brand name to "Recipes Library" and add branded logo in navbar/login.
-- Client can manage recipes from the site UI after login, with wp-admin still available.
+- Commit 15 complete: set brand name to "Recipes Library" and add branded logo in navbar/login.
+- Commit 16 complete: increase login/navbar logo sizes.
+- Commit 17 in progress: home/gallery list split and separate manage page UX polish.
+- Commit 18 in progress: enforce private-only recipes and remove public/private UI noise.
+- Site structure now:
+  - Home (`/`): searchable recipe library with Gallery/List toggle
+  - Manage Recipes (`/manage-recipes/`): add/edit/delete UI
+  - Login (`/login/`): form-only page
+- Archive link removed from navigation and archive route redirects to home.
+- Client can manage recipes from wp-admin and also from the frontend Manage page.
 
 ## Commands Run
 
@@ -50,6 +57,9 @@ This is a small WordPress recipe PDF library for an Upwork client job titled "Re
 - PHP lint via LocalWP PHP executable for plugin PHP files
 - `git diff --check`
 - `git push`
+- `git status --short`
+- `rg --files app/public/wp-content/themes/recipes-hook-theme`
+- `rg --files app/public/wp-content/plugins/recipe-pdf-library`
 
 ## Decisions Made
 
@@ -63,11 +73,15 @@ This is a small WordPress recipe PDF library for an Upwork client job titled "Re
 
 ## Known Issues
 
-- None yet.
+- `php` CLI is not available in PATH in this environment, so PHP lint could not be run from terminal.
 
 ## Next Recommended Step
 
-Manual WordPress QA: activate plugin/theme, log in via site UI, add/edit/delete recipe PDFs from frontend panel, then verify public search/view/download flows.
+Manual WordPress QA in LocalWP browser:
+1. Confirm Home shows searchable library with Gallery/List toggle and thumbnail previews.
+2. Confirm `/manage-recipes/` handles add/edit/delete.
+3. Confirm larger logo on navbar and login page.
+4. Confirm `/recipe-archive/` redirects to `/`.
 
 ## Latest Commit Summary
 
@@ -86,4 +100,7 @@ Manual WordPress QA: activate plugin/theme, log in via site UI, add/edit/delete 
 - Pending commit: `feat: enforce per-user recipe collections and dedicated login page`
 - `feat: enforce per-user recipe collections and dedicated login page`
 - `feat: enforce frontend login redirects for protected routes`
-- Pending commit: `style: add Recipes Library branding and logo`
+- `style: add Recipes Library branding and logo`
+- `style: increase Recipes Library logo sizing`
+- Pending commit: `feat: reorganize recipe home and manage workflows`
+- Pending commit: `feat: finalize home/manage split with private-only recipe flow`

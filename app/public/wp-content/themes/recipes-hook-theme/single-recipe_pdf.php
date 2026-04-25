@@ -10,8 +10,8 @@ if ( have_posts() ) :
 		if ( ! is_user_logged_in() || get_current_user_id() !== $author_id ) {
 			?>
 			<div class="rpl-empty-state">
-				<h2><?php esc_html_e( 'Private recipe', 'recipes-hook-theme' ); ?></h2>
-				<p><?php esc_html_e( 'This recipe belongs to another account. Log in to view your own recipe collection.', 'recipes-hook-theme' ); ?></p>
+				<h2><?php esc_html_e( 'Sign in required', 'recipes-hook-theme' ); ?></h2>
+				<p><?php esc_html_e( 'Please log in with your account to view this recipe.', 'recipes-hook-theme' ); ?></p>
 				<p><a class="rpl-view-button" href="<?php echo esc_url( home_url( '/login/' ) ); ?>"><?php esc_html_e( 'Go to Login', 'recipes-hook-theme' ); ?></a></p>
 			</div>
 			<?php
@@ -19,6 +19,7 @@ if ( have_posts() ) :
 		}
 
 		$pdf_url = function_exists( 'rpl_get_recipe_pdf_url' ) ? rpl_get_recipe_pdf_url( $post_id ) : '';
+		$pdf_download_url = function_exists( 'rpl_get_secure_pdf_download_url' ) ? rpl_get_secure_pdf_download_url( $post_id ) : $pdf_url;
 		$pdf_name = function_exists( 'rpl_get_recipe_pdf_filename' ) ? rpl_get_recipe_pdf_filename( $post_id ) : '';
 		$categories = get_the_terms( $post_id, 'recipe_category' );
 		$tags = get_the_terms( $post_id, 'recipe_tag' );
@@ -42,7 +43,7 @@ if ( have_posts() ) :
 			<?php if ( $pdf_url ) : ?>
 				<div class="rpl-pdf-actions">
 					<a class="rpl-view-button" href="<?php echo esc_url( $pdf_url ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'Open PDF', 'recipes-hook-theme' ); ?></a>
-					<a class="rpl-secondary-button" href="<?php echo esc_url( $pdf_url ); ?>" download><?php esc_html_e( 'Download PDF', 'recipes-hook-theme' ); ?></a>
+					<a class="rpl-secondary-button" href="<?php echo esc_url( $pdf_download_url ); ?>" download><?php esc_html_e( 'Download PDF', 'recipes-hook-theme' ); ?></a>
 					<a class="rpl-clear-link" href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php esc_html_e( 'Back to recipes', 'recipes-hook-theme' ); ?></a>
 				</div>
 				<div class="rpl-pdf-viewer">

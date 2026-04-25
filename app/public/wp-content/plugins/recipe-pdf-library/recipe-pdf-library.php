@@ -21,6 +21,7 @@ require_once RPL_PLUGIN_DIR . 'includes/pdf-indexer.php';
 require_once RPL_PLUGIN_DIR . 'includes/meta-boxes.php';
 require_once RPL_PLUGIN_DIR . 'includes/shortcodes.php';
 require_once RPL_PLUGIN_DIR . 'includes/frontend-crud.php';
+require_once RPL_PLUGIN_DIR . 'includes/pdf-access.php';
 require_once RPL_PLUGIN_DIR . 'includes/admin-setup.php';
 
 function rpl_activate(): void {

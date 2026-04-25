@@ -39,6 +39,25 @@ function rht_create_login_page_on_theme_switch(): void {
 }
 add_action( 'after_switch_theme', 'rht_create_login_page_on_theme_switch' );
 
+function rht_create_manage_page_on_theme_switch(): void {
+	$manage_page = get_page_by_path( 'manage-recipes' );
+
+	if ( $manage_page instanceof WP_Post ) {
+		return;
+	}
+
+	wp_insert_post(
+		array(
+			'post_type'    => 'page',
+			'post_status'  => 'publish',
+			'post_title'   => 'Manage Recipes',
+			'post_name'    => 'manage-recipes',
+			'post_content' => '',
+		)
+	);
+}
+add_action( 'after_switch_theme', 'rht_create_manage_page_on_theme_switch' );
+
 function rht_ensure_login_page_exists(): void {
 	if ( get_option( 'rht_login_page_checked', false ) ) {
 		return;
@@ -48,6 +67,16 @@ function rht_ensure_login_page_exists(): void {
 	update_option( 'rht_login_page_checked', 1, false );
 }
 add_action( 'init', 'rht_ensure_login_page_exists' );
+
+function rht_ensure_manage_page_exists(): void {
+	if ( get_option( 'rht_manage_page_checked', false ) ) {
+		return;
+	}
+
+	rht_create_manage_page_on_theme_switch();
+	update_option( 'rht_manage_page_checked', 1, false );
+}
+add_action( 'init', 'rht_ensure_manage_page_exists' );
 
 function rht_ensure_brand_defaults(): void {
 	if ( get_option( 'rht_brand_defaults_applied', false ) ) {
@@ -96,6 +125,14 @@ function rht_enforce_login_gate(): void {
 	}
 }
 add_action( 'template_redirect', 'rht_enforce_login_gate' );
+
+function rht_redirect_recipe_archive_to_home(): void {
+	if ( is_post_type_archive( 'recipe_pdf' ) ) {
+		wp_safe_redirect( home_url( '/' ) );
+		exit;
+	}
+}
+add_action( 'template_redirect', 'rht_redirect_recipe_archive_to_home', 5 );
 
 function rht_handle_front_login(): void {
 	if ( is_user_logged_in() ) {

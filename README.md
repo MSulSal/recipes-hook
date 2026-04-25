@@ -7,9 +7,11 @@ A small WordPress project for a simple recipe PDF library. The client can upload
 - Custom WordPress plugin: `Recipe PDF Library`
 - Recipe custom post type for PDF-based recipes
 - Searchable frontend library with shortcode: `[recipe_pdf_library]`
+- Home page recipe gallery/list toggle with PDF preview thumbnails
+- Dedicated **Manage Recipes** page for add/edit/delete
 - Search by title, PDF filename, category, and tag
 - Fallback-safe PDF text indexing for some machine-readable PDFs
-- In-browser PDF view and download links
+- In-browser PDF view and download links (secure endpoint)
 - Admin PDF upload/select field using the WordPress Media Library
 - Recipe categories and tags managed in WordPress admin
 - Client handoff documentation in `docs/`
@@ -27,8 +29,9 @@ Tracked project code lives at:
 Activate theme **Recipes Hook Theme** and plugin **Recipe PDF Library** in wp-admin.
 
 The custom theme handles presentation:
-- Front page recipe UI
-- Archive and single recipe templates
+- Home recipe library UI
+- Manage Recipes page UI
+- Single recipe templates and login page styling
 
 The plugin handles business logic:
 - Recipe post type/taxonomies
@@ -36,8 +39,10 @@ The plugin handles business logic:
 - Search behavior and PDF text indexing
 - Frontend authenticated create/edit/delete actions
 - Per-user private recipe collections
+- Secure inline PDF viewing and download endpoints
 
 The login form is on `/login`. The homepage shows a login prompt when signed out.
+Archive navigation is intentionally removed; `/recipe-archive/` is redirected to home.
 
 ## Handoff Notes
 

@@ -103,3 +103,40 @@ function rpl_register_taxonomies(): void {
 		)
 	);
 }
+
+function rpl_force_recipe_private_status( array $data, array $postarr ): array {
+	if ( empty( $data['post_type'] ) || 'recipe_pdf' !== $data['post_type'] ) {
+		return $data;
+	}
+
+	$allowed_statuses = array( 'trash', 'auto-draft', 'inherit' );
+
+	if ( isset( $data['post_status'] ) && in_array( $data['post_status'], $allowed_statuses, true ) ) {
+		return $data;
+	}
+
+	$data['post_status'] = 'private';
+
+	return $data;
+}
+add_filter( 'wp_insert_post_data', 'rpl_force_recipe_private_status', 10, 2 );
+
+function rpl_strip_recipe_private_prefix( string $title, int $post_id ): string {
+	if ( 'recipe_pdf' !== get_post_type( $post_id ) ) {
+		return $title;
+	}
+
+	return preg_replace( '/^(Private|Protected):\s*/i', '', $title ) ?: $title;
+}
+add_filter( 'the_title', 'rpl_strip_recipe_private_prefix', 10, 2 );
+
+function rpl_remove_recipe_private_post_state( array $states, WP_Post $post ): array {
+	if ( 'recipe_pdf' !== $post->post_type ) {
+		return $states;
+	}
+
+	unset( $states['private'] );
+
+	return $states;
+}
+add_filter( 'display_post_states', 'rpl_remove_recipe_private_post_state', 10, 2 );
