@@ -47,6 +47,7 @@ This is a small WordPress recipe PDF library for an Upwork client job titled "Re
 - Commit 22 in progress: add public recipe browsing for signed-out users and visibility badges.
 - Commit 23 in progress: ignore local All-in-One migration backup artifacts.
 - Commit 24 in progress: include global public recipes for signed-in users.
+- Commit 25 in progress: improve PDF thumbnail fallback for hosts without preview generation.
 - Site structure now:
   - Home (`/`): searchable recipe library with Gallery/List toggle (signed-in: own recipes, signed-out: public recipes only)
   - Manage Recipes (`/manage-recipes/`): add/edit/delete UI
@@ -92,6 +93,7 @@ Manual WordPress QA in LocalWP browser:
 6. Confirm home page no longer shows heading/subheading intro copy.
 7. Confirm visibility toggle and Public/Private badges are working.
 8. Confirm signed-in users can see public recipes from other accounts.
+9. Confirm cards show PDF icon fallback when first-page thumbnail is unavailable on host.
 
 ## Latest Commit Summary
 
@@ -120,3 +122,4 @@ Manual WordPress QA in LocalWP browser:
 - Pending commit: `feat: add public recipe browsing and visibility badges`
 - Pending commit: `chore: ignore local migration backup artifacts`
 - Pending commit: `fix: include public recipes in signed-in library view`
+- Pending commit: `fix: add PDF icon fallback when host cannot generate previews`

@@ -87,6 +87,8 @@ On home:
 - Signed-in users see their own recipes (both private and public)
 - Signed-out users see only public recipes
 
+If PDF thumbnails do not appear on your host, the server may be missing PDF preview dependencies (typically Imagick/Ghostscript). The site will still show a PDF icon fallback and all recipe/PDF actions continue to work.
+
 Clicking **View Recipe** opens a recipe detail page with the PDF embedded in the browser when supported. Visitors can also open the PDF in a new tab or download it.
 
 The library shows active search/category filters and a result count so it is easy to confirm what is being filtered.

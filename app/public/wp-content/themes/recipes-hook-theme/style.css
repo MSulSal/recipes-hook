@@ -690,6 +690,12 @@ a:focus {
 	width: 100%;
 }
 
+.rpl-recipe-card__thumb-icon {
+	background: #fff;
+	object-fit: contain !important;
+	padding: 1.05rem;
+}
+
 .rpl-recipe-card__thumb span {
 	align-items: center;
 	color: var(--rpl-muted);

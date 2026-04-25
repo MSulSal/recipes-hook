@@ -208,6 +208,7 @@ function rpl_filter_recipes_by_search( array $recipes, string $search ): array {
 function rpl_render_recipe_card( WP_Post $recipe, string $view_mode ): void {
 	$pdf_url      = rpl_get_recipe_pdf_url( $recipe->ID );
 	$preview_url  = rpl_get_recipe_pdf_preview_image_url( $recipe->ID, 'medium' );
+	$fallback_icon = rpl_get_recipe_pdf_fallback_icon_url( $recipe->ID );
 	$published    = get_the_date( get_option( 'date_format' ), $recipe );
 	$categories   = get_the_terms( $recipe->ID, 'recipe_category' );
 	$tags         = get_the_terms( $recipe->ID, 'recipe_tag' );
@@ -218,6 +219,8 @@ function rpl_render_recipe_card( WP_Post $recipe, string $view_mode ): void {
 		<a class="rpl-recipe-card__thumb" href="<?php echo esc_url( get_permalink( $recipe ) ); ?>" aria-label="<?php echo esc_attr( get_the_title( $recipe ) ); ?>">
 			<?php if ( $preview_url ) : ?>
 				<img src="<?php echo esc_url( $preview_url ); ?>" alt="<?php echo esc_attr( get_the_title( $recipe ) ); ?>">
+			<?php elseif ( $fallback_icon ) : ?>
+				<img class="rpl-recipe-card__thumb-icon" src="<?php echo esc_url( $fallback_icon ); ?>" alt="<?php esc_attr_e( 'PDF file', 'recipe-pdf-library' ); ?>">
 			<?php else : ?>
 				<span><?php esc_html_e( 'PDF', 'recipe-pdf-library' ); ?></span>
 			<?php endif; ?>
@@ -264,6 +267,18 @@ function rpl_get_recipe_pdf_preview_image_url( int $post_id, string $size = 'med
 	}
 
 	return '';
+}
+
+function rpl_get_recipe_pdf_fallback_icon_url( int $post_id ): string {
+	$attachment_id = rpl_get_recipe_pdf_attachment_id( $post_id );
+
+	if ( ! $attachment_id || ! rpl_attachment_is_pdf( $attachment_id ) ) {
+		return '';
+	}
+
+	$icon = wp_mime_type_icon( $attachment_id );
+
+	return is_string( $icon ) ? $icon : '';
 }
 
 function rpl_render_term_list( $terms, string $class_name ): void {
