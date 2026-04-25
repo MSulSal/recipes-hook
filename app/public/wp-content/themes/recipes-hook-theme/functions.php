@@ -86,3 +86,48 @@ function rht_enforce_login_gate(): void {
 	}
 }
 add_action( 'template_redirect', 'rht_enforce_login_gate' );
+
+function rht_handle_front_login(): void {
+	if ( is_user_logged_in() ) {
+		wp_safe_redirect( home_url( '/' ) );
+		exit;
+	}
+
+	if ( ! isset( $_POST['rht_login_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['rht_login_nonce'] ) ), 'rht_front_login' ) ) {
+		wp_safe_redirect( add_query_arg( 'login_error', 'invalid_request', home_url( '/login/' ) ) );
+		exit;
+	}
+
+	$username = isset( $_POST['log'] ) ? sanitize_user( wp_unslash( $_POST['log'] ) ) : '';
+	$password = isset( $_POST['pwd'] ) ? (string) wp_unslash( $_POST['pwd'] ) : '';
+	$remember = ! empty( $_POST['rememberme'] );
+	$redirect = isset( $_POST['redirect_to'] ) ? esc_url_raw( wp_unslash( $_POST['redirect_to'] ) ) : home_url( '/' );
+
+	if ( '' === $username || '' === $password ) {
+		wp_safe_redirect( add_query_arg( 'login_error', 'missing_fields', home_url( '/login/' ) ) );
+		exit;
+	}
+
+	$user = wp_signon(
+		array(
+			'user_login'    => $username,
+			'user_password' => $password,
+			'remember'      => $remember,
+		),
+		is_ssl()
+	);
+
+	if ( is_wp_error( $user ) ) {
+		wp_safe_redirect( add_query_arg( 'login_error', 'invalid_credentials', home_url( '/login/' ) ) );
+		exit;
+	}
+
+	if ( 0 !== strpos( $redirect, home_url() ) ) {
+		$redirect = home_url( '/' );
+	}
+
+	wp_safe_redirect( $redirect );
+	exit;
+}
+add_action( 'admin_post_nopriv_rht_front_login', 'rht_handle_front_login' );
+add_action( 'admin_post_rht_front_login', 'rht_handle_front_login' );

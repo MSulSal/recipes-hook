@@ -5,6 +5,7 @@ if ( is_user_logged_in() ) {
 }
 
 $redirect_target = home_url( '/' );
+$login_error     = isset( $_GET['login_error'] ) ? sanitize_key( wp_unslash( $_GET['login_error'] ) ) : '';
 
 if ( isset( $_GET['redirect_to'] ) ) {
 	$candidate = esc_url_raw( wp_unslash( $_GET['redirect_to'] ) );
@@ -23,7 +24,20 @@ if ( isset( $_GET['redirect_to'] ) ) {
 <body <?php body_class( 'rht-login-page' ); ?>>
 <?php wp_body_open(); ?>
 <main class="rht-login-shell rht-login-shell--plain">
-	<form class="rht-auth-form rht-auth-form--plain" name="loginform" action="<?php echo esc_url( wp_login_url() ); ?>" method="post">
+	<?php if ( '' !== $login_error ) : ?>
+		<div class="rht-alert">
+			<?php if ( 'missing_fields' === $login_error ) : ?>
+				<?php esc_html_e( 'Please enter both username and password.', 'recipes-hook-theme' ); ?>
+			<?php elseif ( 'invalid_request' === $login_error ) : ?>
+				<?php esc_html_e( 'Login request expired. Please try again.', 'recipes-hook-theme' ); ?>
+			<?php else : ?>
+				<?php esc_html_e( 'Login failed. Check your username/password and try again.', 'recipes-hook-theme' ); ?>
+			<?php endif; ?>
+		</div>
+	<?php endif; ?>
+	<form class="rht-auth-form rht-auth-form--plain" name="loginform" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" method="post">
+		<input type="hidden" name="action" value="rht_front_login">
+		<?php wp_nonce_field( 'rht_front_login', 'rht_login_nonce' ); ?>
 		<label for="user_login"><?php esc_html_e( 'Username or Email', 'recipes-hook-theme' ); ?></label>
 		<input type="text" name="log" id="user_login" autocomplete="username" required>
 
