@@ -1,11 +1,116 @@
+/*
+Theme Name: Recipes Hook Theme
+Theme URI: https://github.com/MSulSal/recipes-hook
+Author: Recipes Hook
+Author URI: https://github.com/MSulSal
+Description: Custom presentation theme for the Recipe PDF Library project.
+Version: 1.0.0
+Text Domain: recipes-hook-theme
+*/
+
+:root {
+	--rht-bg: #f7f2ea;
+	--rht-surface: #fffaf4;
+	--rht-surface-alt: #ffffff;
+	--rht-border: #ded7ce;
+	--rht-ink: #24211d;
+	--rht-muted: #6d665e;
+	--rht-accent: #8b3f2b;
+	--rht-accent-dark: #6f2e1e;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+body {
+	background: linear-gradient(180deg, #fcf7f0 0%, var(--rht-bg) 100%);
+	color: var(--rht-ink);
+	font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+	margin: 0;
+}
+
+a {
+	color: var(--rht-accent);
+}
+
+a:hover,
+a:focus {
+	color: var(--rht-accent-dark);
+}
+
+.rht-site-header {
+	background: var(--rht-surface-alt);
+	border-bottom: 1px solid var(--rht-border);
+	position: sticky;
+	top: 0;
+	z-index: 10;
+}
+
+.rht-site-header__inner,
+.rht-page-shell {
+	margin: 0 auto;
+	max-width: 1100px;
+	padding: 1rem;
+}
+
+.rht-site-header__inner {
+	align-items: center;
+	display: flex;
+	justify-content: space-between;
+}
+
+.rht-brand {
+	color: var(--rht-ink);
+	font-size: 1.35rem;
+	font-weight: 800;
+	text-decoration: none;
+}
+
+.rht-nav {
+	align-items: center;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.85rem;
+}
+
+.rht-nav a {
+	font-weight: 700;
+	text-decoration: none;
+}
+
+.rht-page-title {
+	font-size: clamp(1.7rem, 4vw, 2.4rem);
+	line-height: 1.12;
+	margin: 0 0 0.35rem;
+}
+
+.rht-page-subtitle {
+	color: var(--rht-muted);
+	margin: 0;
+}
+
+.rht-hero {
+	margin-bottom: 1.5rem;
+}
+
+.rht-card {
+	background: var(--rht-surface-alt);
+	border: 1px solid var(--rht-border);
+	border-radius: 10px;
+	padding: 1rem;
+}
+
 .rpl-library {
-	--rpl-border: #ded7ce;
-	--rpl-ink: #24211d;
-	--rpl-muted: #6d665e;
-	--rpl-surface: #fffaf4;
-	--rpl-surface-alt: #fff;
-	--rpl-accent: #8b3f2b;
-	--rpl-accent-dark: #6f2e1e;
+	--rpl-border: var(--rht-border);
+	--rpl-ink: var(--rht-ink);
+	--rpl-muted: var(--rht-muted);
+	--rpl-surface: var(--rht-surface);
+	--rpl-surface-alt: var(--rht-surface-alt);
+	--rpl-accent: var(--rht-accent);
+	--rpl-accent-dark: var(--rht-accent-dark);
 	color: var(--rpl-ink);
 	container-type: inline-size;
 }
@@ -317,7 +422,19 @@
 	overflow-wrap: anywhere;
 }
 
+.rht-site-footer {
+	color: var(--rht-muted);
+	font-size: 0.92rem;
+	margin-top: 2rem;
+	padding: 1rem 0 2rem;
+}
+
 @media (max-width: 700px) {
+	.rht-site-header__inner {
+		flex-direction: column;
+		gap: 0.6rem;
+	}
+
 	.rpl-search-form {
 		grid-template-columns: 1fr;
 		padding: 0.85rem;

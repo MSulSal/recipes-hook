@@ -15,13 +15,6 @@ function rpl_register_shortcodes(): void {
 add_action( 'init', 'rpl_register_shortcodes' );
 
 function rpl_render_recipe_library_shortcode(): string {
-	wp_enqueue_style(
-		'rpl-frontend',
-		RPL_PLUGIN_URL . 'assets/css/recipe-pdf-library.css',
-		array(),
-		RPL_VERSION
-	);
-
 	$search        = isset( $_GET['recipe_search'] ) ? sanitize_text_field( wp_unslash( $_GET['recipe_search'] ) ) : '';
 	$category_slug = isset( $_GET['recipe_category'] ) ? sanitize_title( wp_unslash( $_GET['recipe_category'] ) ) : '';
 	$recipes       = rpl_get_library_recipes( $category_slug );

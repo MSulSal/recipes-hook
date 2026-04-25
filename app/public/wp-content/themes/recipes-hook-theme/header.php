@@ -1,0 +1,30 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+?>
+<!doctype html>
+<html <?php language_attributes(); ?>>
+<head>
+	<meta charset="<?php bloginfo( 'charset' ); ?>">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<?php wp_head(); ?>
+</head>
+<body <?php body_class(); ?>>
+<?php wp_body_open(); ?>
+<header class="rht-site-header">
+	<div class="rht-site-header__inner">
+		<a class="rht-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php bloginfo( 'name' ); ?></a>
+		<nav class="rht-nav">
+			<a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php esc_html_e( 'Recipes', 'recipes-hook-theme' ); ?></a>
+			<?php if ( get_post_type_archive_link( 'recipe_pdf' ) ) : ?>
+				<a href="<?php echo esc_url( (string) get_post_type_archive_link( 'recipe_pdf' ) ); ?>"><?php esc_html_e( 'Archive', 'recipes-hook-theme' ); ?></a>
+			<?php endif; ?>
+			<?php if ( is_user_logged_in() ) : ?>
+				<a href="<?php echo esc_url( admin_url( 'edit.php?post_type=recipe_pdf' ) ); ?>"><?php esc_html_e( 'Manage Recipes', 'recipes-hook-theme' ); ?></a>
+			<?php endif; ?>
+		</nav>
+	</div>
+</header>
+<main class="rht-page-shell">
+

@@ -32,6 +32,7 @@ This is a small WordPress recipe PDF library for an Upwork client job titled "Re
 - Commit 7 complete: shortcode and detail page CSS polished for a cleaner responsive demo.
 - Commit 8 complete: final documentation and proposal notes.
 - Commit 9 in progress: UI-first polish pass on library and detail view markup/CSS for demo readiness.
+- Commit 10 in progress: move presentation logic into custom theme and keep business logic in plugin.
 - The client workflow remains inside WordPress admin.
 
 ## Commands Run
@@ -72,3 +73,4 @@ Manual WordPress QA: activate plugin, create the Recipes page with `[recipe_pdf_
 - `style: polish recipe library layout for client demo`
 - `docs: finalize client handoff and proposal notes`
 - Pending commit: `style: refine recipe library ui and detail experience`
+- Pending commit: `feat: add custom theme and move recipe presentation out of plugin`

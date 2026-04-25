@@ -27,6 +27,8 @@
 /app/public/wp-content/plugins/*
 !/app/public/wp-content/plugins/recipe-pdf-library/
 /app/public/wp-content/themes/*
+!/app/public/wp-content/themes/recipes-hook-theme/
+!/app/public/wp-content/themes/recipes-hook-theme/**
 
 # OS/editor noise
 .DS_Store

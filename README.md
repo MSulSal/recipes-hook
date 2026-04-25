@@ -19,11 +19,21 @@ A small WordPress project for a simple recipe PDF library. The client can upload
 
 This repo is initialized at the LocalWP site root. WordPress core, uploads, caches, LocalWP config, secrets, and bundled themes/plugins are ignored.
 
-Tracked project code is expected to live at:
+Tracked project code lives at:
 
 `app/public/wp-content/plugins/recipe-pdf-library/`
+`app/public/wp-content/themes/recipes-hook-theme/`
 
-Create a normal WordPress page titled **Recipes**, add `[recipe_pdf_library]`, and publish it. Add that page to navigation from WordPress admin.
+Activate theme **Recipes Hook Theme** and plugin **Recipe PDF Library** in wp-admin.
+
+The custom theme handles presentation:
+- Front page recipe UI
+- Archive and single recipe templates
+
+The plugin handles business logic:
+- Recipe post type/taxonomies
+- PDF upload and validation
+- Search behavior and PDF text indexing
 
 ## Handoff Notes
 

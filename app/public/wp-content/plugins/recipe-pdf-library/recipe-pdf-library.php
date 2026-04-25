@@ -20,7 +20,7 @@ require_once RPL_PLUGIN_DIR . 'includes/post-types.php';
 require_once RPL_PLUGIN_DIR . 'includes/pdf-indexer.php';
 require_once RPL_PLUGIN_DIR . 'includes/meta-boxes.php';
 require_once RPL_PLUGIN_DIR . 'includes/shortcodes.php';
-require_once RPL_PLUGIN_DIR . 'includes/detail-view.php';
+require_once RPL_PLUGIN_DIR . 'includes/admin-setup.php';
 
 function rpl_activate(): void {
 	rpl_register_post_type();

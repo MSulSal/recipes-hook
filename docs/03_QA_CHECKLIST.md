@@ -31,8 +31,7 @@ Record results here as features are built.
 
 ## Final Manual Demo Flow
 
-1. Activate **Recipe PDF Library** in **Plugins**.
-2. Create a page titled **Recipes** and add `[recipe_pdf_library]`.
-3. Add the **Recipes** page to navigation.
-4. Go to **Recipes > Add New** and upload `Spicy_Pork_Scissor_Cut_Noodles_Full.pdf`.
-5. Publish the recipe and confirm the title/category/tag/search/detail/download workflows.
+1. Activate **Recipes Hook Theme** in **Appearance > Themes**.
+2. Activate **Recipe PDF Library** in **Plugins**.
+3. Go to **Recipes > Add New** and upload `Spicy_Pork_Scissor_Cut_Noodles_Full.pdf`.
+4. Publish the recipe and confirm the title/category/tag/search/detail/download workflows.
