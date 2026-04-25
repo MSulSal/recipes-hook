@@ -6,14 +6,19 @@
 	--rpl-accent: #8b3f2b;
 	--rpl-accent-dark: #6f2e1e;
 	color: var(--rpl-ink);
+	container-type: inline-size;
 }
 
 .rpl-search-form {
 	align-items: end;
+	background: #fff;
+	border: 1px solid var(--rpl-border);
+	border-radius: 8px;
 	display: grid;
 	gap: 1rem;
 	grid-template-columns: minmax(14rem, 1fr) minmax(12rem, 16rem) auto auto;
 	margin: 0 0 1.5rem;
+	padding: 1rem;
 }
 
 .rpl-search-field,
@@ -30,11 +35,20 @@
 
 .rpl-search-form input,
 .rpl-search-form select {
+	background: #fff;
 	border: 1px solid var(--rpl-border);
 	border-radius: 6px;
+	color: var(--rpl-ink);
 	min-height: 2.75rem;
 	padding: 0.65rem 0.75rem;
 	width: 100%;
+}
+
+.rpl-search-form input:focus,
+.rpl-search-form select:focus {
+	border-color: var(--rpl-accent);
+	box-shadow: 0 0 0 2px rgba(139, 63, 43, 0.16);
+	outline: 0;
 }
 
 .rpl-search-button,
@@ -78,6 +92,13 @@
 	padding: 0.75rem 0;
 }
 
+.rpl-result-count {
+	color: var(--rpl-muted);
+	font-size: 0.95rem;
+	font-weight: 700;
+	margin: 0 0 0.8rem;
+}
+
 .rpl-recipe-grid {
 	display: grid;
 	gap: 1rem;
@@ -88,11 +109,20 @@
 	background: var(--rpl-surface);
 	border: 1px solid var(--rpl-border);
 	border-radius: 8px;
+	box-shadow: 0 1px 2px rgba(36, 33, 29, 0.05);
 	display: flex;
 	flex-direction: column;
 	gap: 1rem;
 	justify-content: space-between;
 	padding: 1rem;
+}
+
+.rpl-recipe-card:hover {
+	border-color: #c9b9a9;
+}
+
+.rpl-recipe-card .rpl-view-button {
+	align-self: flex-start;
 }
 
 .rpl-recipe-card__title {
@@ -199,11 +229,13 @@
 @media (max-width: 700px) {
 	.rpl-search-form {
 		grid-template-columns: 1fr;
+		padding: 0.85rem;
 	}
 
 	.rpl-search-button,
 	.rpl-view-button,
 	.rpl-secondary-button {
+		align-self: stretch;
 		width: 100%;
 	}
 

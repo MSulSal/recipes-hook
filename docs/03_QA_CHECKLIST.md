@@ -11,7 +11,7 @@ Record results here as features are built.
 - Search by PDF text if implemented: Ready for manual test with a machine-readable PDF
 - View PDF detail page: Ready for manual test
 - Download PDF: Ready for manual test
-- Mobile layout: Pending
+- Mobile layout: Ready for manual test
 - Empty state: Ready for manual test on shortcode page
 - No-results state: Ready for manual test on shortcode page
 - Bad upload / non-PDF protection: Ready for manual test in wp-admin
@@ -25,3 +25,4 @@ Record results here as features are built.
 - Commit 4: Create a **Recipes** page with `[recipe_pdf_library]`, publish at least one recipe, and test search by title, PDF filename, category, and tag.
 - Commit 5: Click **View Recipe**, confirm the PDF embeds, **Open PDF** opens the file, **Download PDF** downloads it, and a recipe with no PDF shows the unavailable message.
 - Commit 6: Upload a machine-readable PDF, publish the recipe, then search for a distinctive word from inside the PDF. Also confirm a scanned PDF still works by title/filename/category/tag if text is not indexed.
+- Commit 7: Check the recipe library and detail page around mobile width. Confirm the search form stacks, buttons fit, cards do not overflow, and the PDF viewer remains usable.

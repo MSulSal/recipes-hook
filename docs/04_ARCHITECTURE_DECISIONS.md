@@ -33,3 +33,7 @@ The client should be able to do all routine work from WordPress admin: upload PD
 ## 60 MB Import Limit
 
 The custom behavior is isolated in a plugin so it can be uploaded separately if a hosting import limit blocks a full LocalWP export. The repo does not track uploads, which keeps the code package small and portable.
+
+## Styling
+
+Frontend CSS is scoped under `rpl-` classes and loaded by the plugin only where the shortcode/detail view needs it. No theme files or external CDNs are required.

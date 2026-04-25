@@ -79,6 +79,17 @@ function rpl_render_recipe_library_shortcode(): string {
 				<?php endif; ?>
 			</div>
 		<?php else : ?>
+			<p class="rpl-result-count">
+				<?php
+				printf(
+					esc_html(
+						/* translators: %d: recipe count. */
+						_n( '%d recipe', '%d recipes', count( $recipes ), 'recipe-pdf-library' )
+					),
+					absint( count( $recipes ) )
+				);
+				?>
+			</p>
 			<div class="rpl-recipe-grid">
 				<?php foreach ( $recipes as $recipe ) : ?>
 					<?php rpl_render_recipe_card( $recipe ); ?>
