@@ -78,6 +78,8 @@ if ( ! $is_edit_valid ) {
 				<label for="rht-recipe-description"><?php esc_html_e( 'Notes (optional)', 'recipes-hook-theme' ); ?></label>
 				<textarea id="rht-recipe-description" name="rpl_recipe_description" rows="4" placeholder="<?php esc_attr_e( 'Optional short note for this recipe.', 'recipes-hook-theme' ); ?>"><?php echo esc_textarea( $editing_post ? (string) $editing_post->post_content : '' ); ?></textarea>
 
+				<button type="submit" class="rht-primary-submit"><?php echo esc_html( $editing_post ? __( 'Update Recipe', 'recipes-hook-theme' ) : __( 'Publish Recipe', 'recipes-hook-theme' ) ); ?></button>
+
 				<fieldset class="rht-category-set">
 					<legend><?php esc_html_e( 'Categories', 'recipes-hook-theme' ); ?></legend>
 					<?php if ( is_wp_error( $categories ) || empty( $categories ) ) : ?>
@@ -92,12 +94,11 @@ if ( ! $is_edit_valid ) {
 					<?php endif; ?>
 				</fieldset>
 
-				<div class="rht-form-actions">
-					<button type="submit" class="rpl-view-button"><?php echo esc_html( $editing_post ? __( 'Update Recipe', 'recipes-hook-theme' ) : __( 'Publish Recipe', 'recipes-hook-theme' ) ); ?></button>
-					<?php if ( $editing_post ) : ?>
+				<?php if ( $editing_post ) : ?>
+					<div class="rht-form-actions">
 						<a class="rpl-secondary-link" href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php esc_html_e( 'Cancel Edit', 'recipes-hook-theme' ); ?></a>
-					<?php endif; ?>
-				</div>
+					</div>
+				<?php endif; ?>
 			</form>
 		</div>
 

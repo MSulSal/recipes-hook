@@ -220,6 +220,26 @@ a:focus {
 	gap: 0.65rem;
 }
 
+.rht-primary-submit {
+	background: linear-gradient(180deg, #32845d 0%, #266845 100%);
+	border: 1px solid #266845;
+	border-radius: 10px;
+	color: #fff;
+	cursor: pointer;
+	display: inline-flex;
+	font-size: 0.95rem;
+	font-weight: 700;
+	justify-content: center;
+	min-height: 2.75rem;
+	padding: 0.72rem 0.95rem;
+}
+
+.rht-primary-submit:hover,
+.rht-primary-submit:focus {
+	background: #225c3f;
+	border-color: #225c3f;
+}
+
 .rht-manage-items {
 	list-style: none;
 	margin: 0;
