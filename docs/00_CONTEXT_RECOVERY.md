@@ -23,20 +23,24 @@ This is a small WordPress recipe PDF library for an Upwork client job titled "Re
 
 ## Current Feature Status
 
-- Repo and docs scaffold in progress.
-- Functional plugin code has not been added yet.
+- Commit 1 complete: repo and docs scaffold.
+- Commit 2 in progress: plugin scaffold added with `recipe_pdf` post type, `recipe_category`, and `recipe_tag`.
+- The client workflow remains inside WordPress admin.
 
 ## Commands Run
 
 - `git init`
 - `gh auth status`
 - `gh repo view MSulSal/recipes-hook --json url,nameWithOwner`
+- `git remote add origin https://github.com/MSulSal/recipes-hook.git`
 
 ## Decisions Made
 
 - Git repo is rooted at the LocalWP project folder, not `app/public`, so top-level docs can be tracked cleanly.
 - Recipe functionality will be implemented as a portable custom plugin.
 - WordPress core and generated/local files will not be committed.
+- Client recipe management should happen entirely through WordPress admin.
+- Keep plugin portable so it can be zipped/uploaded separately if a host has a 60 MB import limit.
 
 ## Known Issues
 
@@ -44,9 +48,9 @@ This is a small WordPress recipe PDF library for an Upwork client job titled "Re
 
 ## Next Recommended Step
 
-Commit the repo/documentation scaffold, then create the `Recipe PDF Library` plugin and register the recipe post type and taxonomies.
+Activate the `Recipe PDF Library` plugin in WordPress admin and verify the **Recipes** menu appears.
 
 ## Latest Commit Summary
 
-Pending commit: `chore: initialize WordPress project repo and documentation`
-
+- `chore: initialize WordPress project repo and documentation`
+- Pending commit: `feat: scaffold recipe PDF library plugin`

@@ -9,6 +9,7 @@ A small WordPress project for a simple recipe PDF library. The client can upload
 - Planned searchable frontend library with shortcode: `[recipe_pdf_library]`
 - Planned in-browser PDF view and download links
 - Client handoff documentation in `docs/`
+- Routine client management through WordPress admin only
 
 ## Local Development
 
@@ -22,7 +23,8 @@ Tracked project code is expected to live at:
 
 The final site is intended to be easy for a nontechnical client to own: WordPress admin for content, a portable custom plugin for recipe behavior, and documentation for migration and routine maintenance.
 
+The plugin is intentionally separate from uploads and theme files so it can be zipped and installed on hosting separately if a host only accepts small imports.
+
 ## Screenshots
 
 Add screenshots here after the demo page is populated.
-

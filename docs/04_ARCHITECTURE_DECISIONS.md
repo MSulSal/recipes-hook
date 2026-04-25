@@ -24,3 +24,10 @@ The plugin will use nonces, capability checks, PDF MIME validation, sanitization
 
 The client has a small budget and asked for a straightforward recipe website. This project intentionally avoids complex recipe schemas, nutrition fields, SPAs, paid plugins, and heavy theme work.
 
+## WordPress Admin Ownership
+
+The client should be able to do all routine work from WordPress admin: upload PDFs, title recipes, set categories/tags, publish/unpublish, replace files, manage pages, and update navigation. GitHub and code are for development/handoff only.
+
+## 60 MB Import Limit
+
+The custom behavior is isolated in a plugin so it can be uploaded separately if a hosting import limit blocks a full LocalWP export. The repo does not track uploads, which keeps the code package small and portable.

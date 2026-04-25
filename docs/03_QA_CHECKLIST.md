@@ -20,4 +20,4 @@ Record results here as features are built.
 ## Manual QA Notes
 
 - Commit 1: Repo/docs scaffold only. No WordPress behavior to test yet.
-
+- Commit 2: Activate `Recipe PDF Library` in **Plugins** and confirm **Recipes**, **Recipe Categories**, and **Recipe Tags** appear in WordPress admin.

@@ -1,0 +1,106 @@
+<?php
+/**
+ * Post type and taxonomy registration.
+ *
+ * @package Recipe_PDF_Library
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+function rpl_register_post_type(): void {
+	$labels = array(
+		'name'                  => __( 'Recipes', 'recipe-pdf-library' ),
+		'singular_name'         => __( 'Recipe', 'recipe-pdf-library' ),
+		'menu_name'             => __( 'Recipes', 'recipe-pdf-library' ),
+		'name_admin_bar'        => __( 'Recipe', 'recipe-pdf-library' ),
+		'add_new'               => __( 'Add New', 'recipe-pdf-library' ),
+		'add_new_item'          => __( 'Add New Recipe', 'recipe-pdf-library' ),
+		'new_item'              => __( 'New Recipe', 'recipe-pdf-library' ),
+		'edit_item'             => __( 'Edit Recipe', 'recipe-pdf-library' ),
+		'view_item'             => __( 'View Recipe', 'recipe-pdf-library' ),
+		'all_items'             => __( 'All Recipes', 'recipe-pdf-library' ),
+		'search_items'          => __( 'Search Recipes', 'recipe-pdf-library' ),
+		'not_found'             => __( 'No recipes found.', 'recipe-pdf-library' ),
+		'not_found_in_trash'    => __( 'No recipes found in Trash.', 'recipe-pdf-library' ),
+		'featured_image'        => __( 'Recipe Image', 'recipe-pdf-library' ),
+		'set_featured_image'    => __( 'Set recipe image', 'recipe-pdf-library' ),
+		'remove_featured_image' => __( 'Remove recipe image', 'recipe-pdf-library' ),
+	);
+
+	$args = array(
+		'labels'             => $labels,
+		'public'             => true,
+		'has_archive'        => true,
+		'menu_icon'          => 'dashicons-food',
+		'rewrite'            => array( 'slug' => 'recipes' ),
+		'show_in_rest'       => true,
+		'supports'           => array( 'title', 'editor', 'thumbnail' ),
+		'taxonomies'         => array( 'recipe_category', 'recipe_tag' ),
+		'capability_type'    => 'post',
+		'map_meta_cap'       => true,
+		'publicly_queryable' => true,
+	);
+
+	register_post_type( 'recipe_pdf', $args );
+}
+
+function rpl_register_taxonomies(): void {
+	$category_labels = array(
+		'name'              => __( 'Recipe Categories', 'recipe-pdf-library' ),
+		'singular_name'     => __( 'Recipe Category', 'recipe-pdf-library' ),
+		'search_items'      => __( 'Search Recipe Categories', 'recipe-pdf-library' ),
+		'all_items'         => __( 'All Recipe Categories', 'recipe-pdf-library' ),
+		'edit_item'         => __( 'Edit Recipe Category', 'recipe-pdf-library' ),
+		'update_item'       => __( 'Update Recipe Category', 'recipe-pdf-library' ),
+		'add_new_item'      => __( 'Add New Recipe Category', 'recipe-pdf-library' ),
+		'new_item_name'     => __( 'New Recipe Category Name', 'recipe-pdf-library' ),
+		'menu_name'         => __( 'Recipe Categories', 'recipe-pdf-library' ),
+	);
+
+	register_taxonomy(
+		'recipe_category',
+		array( 'recipe_pdf' ),
+		array(
+			'hierarchical'      => true,
+			'labels'            => $category_labels,
+			'show_ui'           => true,
+			'show_admin_column' => true,
+			'show_in_rest'      => true,
+			'query_var'         => true,
+			'rewrite'           => array( 'slug' => 'recipe-category' ),
+		)
+	);
+
+	$tag_labels = array(
+		'name'                       => __( 'Recipe Tags', 'recipe-pdf-library' ),
+		'singular_name'              => __( 'Recipe Tag', 'recipe-pdf-library' ),
+		'search_items'               => __( 'Search Recipe Tags', 'recipe-pdf-library' ),
+		'popular_items'              => __( 'Popular Recipe Tags', 'recipe-pdf-library' ),
+		'all_items'                  => __( 'All Recipe Tags', 'recipe-pdf-library' ),
+		'edit_item'                  => __( 'Edit Recipe Tag', 'recipe-pdf-library' ),
+		'update_item'                => __( 'Update Recipe Tag', 'recipe-pdf-library' ),
+		'add_new_item'               => __( 'Add New Recipe Tag', 'recipe-pdf-library' ),
+		'new_item_name'              => __( 'New Recipe Tag Name', 'recipe-pdf-library' ),
+		'separate_items_with_commas' => __( 'Separate recipe tags with commas', 'recipe-pdf-library' ),
+		'add_or_remove_items'        => __( 'Add or remove recipe tags', 'recipe-pdf-library' ),
+		'choose_from_most_used'      => __( 'Choose from the most used recipe tags', 'recipe-pdf-library' ),
+		'menu_name'                  => __( 'Recipe Tags', 'recipe-pdf-library' ),
+	);
+
+	register_taxonomy(
+		'recipe_tag',
+		array( 'recipe_pdf' ),
+		array(
+			'hierarchical'      => false,
+			'labels'            => $tag_labels,
+			'show_ui'           => true,
+			'show_admin_column' => true,
+			'show_in_rest'      => true,
+			'query_var'         => true,
+			'rewrite'           => array( 'slug' => 'recipe-tag' ),
+		)
+	);
+}
+

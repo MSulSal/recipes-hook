@@ -12,7 +12,7 @@ Use the admin username and password provided during handoff.
 
 ## Add a Recipe PDF
 
-After the plugin is active, go to **Recipes > Add New** in WordPress. Enter a recipe title and upload/select the recipe PDF in the recipe PDF box.
+After the plugin is active, go to **Recipes > Add New** in WordPress. Enter a recipe title and upload/select the recipe PDF in the recipe PDF box. You should not need FTP, GitHub, code editing, or anything outside WordPress admin to manage recipes.
 
 ## Title, Categories, and Tags
 
@@ -39,4 +39,3 @@ Edit the recipe in WordPress and choose a different PDF. To remove a recipe enti
 ## Add the Recipe Page to Navigation
 
 Go to **Appearance > Editor** or **Appearance > Menus**, depending on the theme, and add the page titled "Recipes" to the site navigation.
-
